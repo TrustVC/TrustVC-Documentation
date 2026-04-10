@@ -1,0 +1,61 @@
+---
+title: Creating a DID
+sidebar_label: Creating a DID
+---
+
+import Flow from "./flow.mdx";
+
+<Flow />
+
+While there exists many [DIDs](/docs/glossary#did-decentralized-identifiers), this tutorial will focus only on `ethr` DID. At the moment, TradeTrust only supports `ethr` DID.
+
+The creation of an `ethr` DID is identical to the creation of a wallet, as it relies entirely on the ethereum architecture. Once the wallet will be created, we will need to retrieve its private key:
+
+- Using the [wallet created in the prerequisite step](/docs/how-tos/open-attestation/prerequisites#wallet-creation), we run this command on the CLI to retrieve the private key:
+
+  ```bash
+  trustvc wallet decrypt
+  ```
+
+  The CLI will interactively prompt you for:
+  - **Wallet file path**: Path to your encrypted wallet JSON file (default: `./wallet.json`)
+  - **Wallet password**: Password to decrypt the wallet
+  - **Risk confirmation**: Confirmation that you understand the risks of revealing the private key
+
+  Example session:
+
+  ```text
+  ? Enter the path to your encrypted wallet JSON file: ./wallet.json
+  ? Enter your wallet password: [hidden]
+  ⚠  warning   ⚠️  You are about to reveal the private key of your wallet.
+  ? Do you understand the risks and want to proceed? Yes
+  ℹ  info      Decrypting wallet...
+
+  ℹ  info      Wallet Address: 0xaCc51f664D647C9928196c4e33D46fd98FDaA91D
+  ℹ  info      Private Key: 0x7b227ac59116f3eeb2b265422cf3cbfbd244c525961fb297eb52153ec62aa845
+  ℹ  info      Mnemonic Phrase: abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about
+
+  ⚠  warning   IMPORTANT: Never share your private key or mnemonic phrase with anyone!
+  ⚠  warning   IMPORTANT: Store this information securely and delete it from your terminal history!
+  ```
+
+There are two information to keep very importantly for the next steps:
+
+- the wallet address (`0xaCc51f664D647C9928196c4e33D46fd98FDaA91D` in the example above)
+- the private key (`0x7b227ac59116f3eeb2b265422cf3cbfbd244c525961fb297eb52153ec62aa845` in the example above)
+
+Please note that you will definitely get different values.
+
+> In order to make the tutorial easier to follow, we decided to reveal all the information about the wallet we used, including the private key. We used a throw-away wallet for that purpose. That means that we will never use this wallet again. It's very important that you **NEVER SHARE THE PRIVATE KEY** of your wallet.
+
+Next, we will be constructing the DID string.
+
+All you need to do is to append the wallet address to the `did:ethr:` string.
+
+For example, the DID string will be `"did:ethr:0xaCc51f664D647C9928196c4e33D46fd98FDaA91D"`.
+
+Once you have the DID string, you can check your DID at
+https://dev.uniresolver.io/1.0/identifiers/did:ethr:CHANGE_BY_YOUR_WALLET_ADDRESS (for instance with [check this url](https://dev.uniresolver.io/1.0/identifiers/did:ethr:0xaCc51f664D647C9928196c4e33D46fd98FDaA91D) with the example above)
+)
+
+Remember the DID string, `"did:ethr:<YOUR_WALLET_ADDRESS>"`, as it will be used in the next step.

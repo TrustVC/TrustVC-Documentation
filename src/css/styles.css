@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/GilroyLight/font.woff2") format("woff2"),
+      url("/fonts/GilroyLight/font.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/GilroyMedium/font.woff2") format("woff2"),
+      url("/fonts/GilroyMedium/font.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/GilroyBold/font.woff2") format("woff2"),
+      url("/fonts/GilroyBold/font.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/GilroyExtraBold/font.woff2") format("woff2"),
+      url("/fonts/GilroyExtraBold/font.woff") format("woff");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+}
