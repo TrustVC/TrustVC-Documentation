@@ -1,0 +1,212 @@
+{
+  "docs": {
+    "Getting Started": ["getting-started"],
+    "Tutorial": [
+      "tutorial/creator",
+      "tutorial/verifier",
+      "tutorial/transferability",
+      "tutorial/decentralized-renderer"
+    ],
+    "How Tos": [
+      {
+        "label": "W3C Verifiable Credentials",
+        "type": "category",
+        "items": [
+          "how-tos/create-w3c-document",
+          "how-tos/contexts",
+          "how-tos/credential-subject",
+          "how-tos/credential-status",
+          "how-tos/bitstring",
+          "how-tos/attachments"
+        ]
+      },
+      {
+        "label": "Issuer Identity",
+        "type": "category",
+        "items": [
+          "how-tos/issuer/did-web",
+          {
+            "label": "OA (Legacy)",
+            "type": "category",
+            "collapsed": true,
+            "items": ["how-tos/issuer/dns-did", "how-tos/issuer/dns-txt"]
+          }
+        ]
+      },
+      "how-tos/verifydocument",
+      {
+        "label": "Transferable Records",
+        "type": "category",
+        "items": [
+          "how-tos/deployment",
+          "how-tos/transactions",
+          "how-tos/fetch-endorsement-chain"
+        ]
+      },
+      {
+        "label": "Decentralized Renderer",
+        "type": "category",
+        "items": [
+          "how-tos/decentralized-renderer/decentralized-renderer-guide",
+          "how-tos/decentralized-renderer/using-generic-templates",
+          "how-tos/decentralized-renderer/template-advanced-features"
+        ]
+      },
+      "how-tos/implementing-qr-codes",
+      {
+        "label": "OpenAttestation (Legacy)",
+        "type": "category",
+        "collapsed": true,
+        "items": [
+          "how-tos/open-attestation/prerequisites",
+          {
+            "label": "Creating a Verifiable Document",
+            "type": "category",
+            "items": [
+              "how-tos/open-attestation/verifiable-documents/overview",
+              {
+                "label": "DNS-DID Method",
+                "type": "category",
+                "items": [
+                  "how-tos/open-attestation/verifiable-documents/dns-did/overview",
+                  "how-tos/open-attestation/verifiable-documents/dns-did/create",
+                  "how-tos/open-attestation/verifiable-documents/dns-did/dns",
+                  "how-tos/open-attestation/verifiable-documents/dns-did/raw-document",
+                  {
+                    "label": "Wrapping Document",
+                    "type": "category",
+                    "items": [
+                      "how-tos/open-attestation/verifiable-documents/dns-did/wrapping-document/wrapping-document-cli",
+                      "how-tos/open-attestation/verifiable-documents/dns-did/wrapping-document/wrapping-document-code"
+                    ]
+                  },
+                  {
+                    "label": "Signing Document",
+                    "type": "category",
+                    "items": [
+                      "how-tos/open-attestation/verifiable-documents/dns-did/signing-document/signing-document-cli",
+                      "how-tos/open-attestation/verifiable-documents/dns-did/signing-document/signing-document-code"
+                    ]
+                  },
+                  "how-tos/open-attestation/verifiable-documents/dns-did/revoking-document"
+                ]
+              },
+              {
+                "label": "DNS-TXT Method",
+                "type": "category",
+                "items": [
+                  "how-tos/open-attestation/verifiable-documents/dns-txt/overview",
+                  {
+                    "label": "Deploying Document Store",
+                    "type": "category",
+                    "items": [
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/deploying-document-store/document-store-cli",
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/deploying-document-store/document-store-code"
+                    ]
+                  },
+                  "how-tos/open-attestation/verifiable-documents/dns-txt/configuring-dns",
+                  "how-tos/open-attestation/verifiable-documents/dns-txt/raw-document",
+                  {
+                    "label": "Wrapping Documents",
+                    "type": "category",
+                    "items": [
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/wrapping-document/wrapping-document-cli",
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/wrapping-document/wrapping-document-code"
+                    ]
+                  },
+                  {
+                    "label": "Issuing Documents",
+                    "type": "category",
+                    "items": [
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/issuing-document/issuing-document-cli",
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/issuing-document/issuing-document-code"
+                    ]
+                  },
+                  {
+                    "label": "Revoking Documents",
+                    "type": "category",
+                    "items": [
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/revoking-document/revoking-document-cli",
+                      "how-tos/open-attestation/verifiable-documents/dns-txt/revoking-document/revoking-document-code"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "Creating a Transferable Record",
+            "type": "category",
+            "items": [
+              "how-tos/open-attestation/transferable-records/overview",
+              {
+                "label": "Deploying Token Registry",
+                "type": "category",
+                "items": [
+                  "how-tos/open-attestation/transferable-records/token-registry/token-registry-cli",
+                  "how-tos/open-attestation/transferable-records/token-registry/token-registry-code"
+                ]
+              },
+              "how-tos/open-attestation/transferable-records/dns",
+              "how-tos/open-attestation/transferable-records/raw-document",
+              {
+                "label": "Wrapping Document",
+                "type": "category",
+                "items": [
+                  "how-tos/open-attestation/transferable-records/wrapping-document/wrapping-document-cli",
+                  "how-tos/open-attestation/transferable-records/wrapping-document/wrapping-document-code"
+                ]
+              },
+              {
+                "label": "Minting of the Document",
+                "type": "category",
+                "items": [
+                  "how-tos/open-attestation/transferable-records/issuing-document/issuing-document-cli",
+                  "how-tos/open-attestation/transferable-records/issuing-document/issuing-document-code"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Advanced",
+        "type": "category",
+        "items": [
+          {
+            "label": "AWS KMS",
+            "type": "category",
+            "items": [
+              "how-tos/advanced/aws-kms/overview",
+              "how-tos/advanced/aws-kms/create-key",
+              "how-tos/advanced/aws-kms/access-keys",
+              "how-tos/advanced/aws-kms/did-sign-demo",
+              "how-tos/advanced/aws-kms/kms-mint-demo"
+            ]
+          },
+          "how-tos/advanced/wallet-management",
+          "how-tos/advanced/address-resolver",
+          "how-tos/advanced/role-and-access",
+          "how-tos/advanced/additional-network-metamask-guide"
+        ]
+      }
+    ],
+    "Migration / Upgrading": [
+      "migration-guide/trustvc",
+      "migration-guide/openattestation-to-trustvc",
+      "migration-guide/migration-trustvc",
+      "migration-guide/w3c-vc-v2",
+      "migration-guide/igp-i",
+      "migration-guide/migration-tr-v5",
+      "migration-guide/migration-tt-cli-v5"
+    ],
+    "Community": ["community/contributing"],
+    "Common Issues & Solutions": [
+      "common-issues/cors-error",
+      "common-issues/polygon-mainnet-workaround",
+      "common-issues/stability-gasfee-workaround",
+      "common-issues/astron-address-whitelist-error"
+    ],
+    "Glossary": ["glossary/glossary"]
+  }
+}

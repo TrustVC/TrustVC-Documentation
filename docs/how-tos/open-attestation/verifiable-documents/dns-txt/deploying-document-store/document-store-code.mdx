@@ -1,0 +1,115 @@
+---
+id: document-store-code
+title: Deploying Document Store Smart Contract (Code)
+sidebar_label: Deploying Document Store (Code)
+pagination_next: how-tos/open-attestation/verifiable-documents/dns-txt/configuring-dns
+pagination_prev: how-tos/open-attestation/verifiable-documents/dns-txt/overview
+---
+
+import Flow from "../flow.mdx";
+
+<Flow />
+
+> For the current step, you can either opt to use the [CLI](/docs/how-tos/open-attestation/verifiable-documents/dns-txt/deploying-document-store/document-store-cli) or [Code](/docs/how-tos/open-attestation/verifiable-documents/dns-txt/deploying-document-store/document-store-code).
+
+## Installation
+
+```sh
+npm install --save @trustvc/trustvc @trustvc/document-store
+```
+
+---
+
+## Usage
+
+To use the package, you will need to provide your own Web3 [provider](https://docs.ethers.io/v5/api/providers/api-providers/) or [signer](https://docs.ethers.io/v5/api/signer/#Wallet) (if you are writing to the blockchain).
+
+Refer to the [pre-requisite](/docs/how-tos/open-attestation/prerequisites#understanding-provider-class) on setup instructions.
+
+### Deploy new document store
+
+The TrustVC library supports both ethers v5 and v6.
+
+The examples below use ethers v6 syntax (`ethers.JsonRpcProvider` ). If you are using ethers v5, replace it with `ethers.providers.JsonRpcProvider(...)` .
+
+It also provides two types of document stores:
+
+1. **Standard Document Store** (default): For immutable documents that cannot be transferred
+2. **Transferable Document Store**: For documents that can change ownership
+
+```ts
+import { deployDocumentStore, CHAIN_ID } from "@trustvc/trustvc";
+import { Wallet, ethers } from "ethers";
+
+// Setup wallet and provider
+const wallet = new Wallet("privateKey");
+const provider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/YOUR_INFURA_KEY");
+const signer = wallet.connect(provider);
+const walletAddress = await signer.getAddress();
+
+// Deploy standard document store
+const receipt = await deployDocumentStore(
+  "My Document Store",
+  walletAddress,
+  signer,
+  {
+    chainId: CHAIN_ID.SEPOLIA,
+    maxFeePerGas: "50000000000", // Optional: EIP-1559 gas settings
+    maxPriorityFeePerGas: "2000000000"
+  }
+);
+
+console.log(`Document Store deployed at: ${receipt.contractAddress}`);
+// Document Store deployed at: 0x63A223E025256790E88778a01f480eBA77731D04
+```
+
+### Deploy transferable document store
+
+For documents that need to support ownership transfers:
+
+```ts
+import { deployDocumentStore, CHAIN_ID } from "@trustvc/trustvc";
+import { Wallet, ethers } from "ethers";
+
+const wallet = new Wallet("privateKey");
+const provider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/YOUR_INFURA_KEY");
+const signer = wallet.connect(provider);
+const walletAddress = await signer.getAddress();
+
+// Deploy transferable document store
+const receipt = await deployDocumentStore(
+  "My Transferable Document Store",
+  walletAddress,
+  signer,
+  {
+    chainId: CHAIN_ID.SEPOLIA,
+    isTransferable: true // Enable transferability
+  }
+);
+
+console.log(`Transferable Document Store deployed at: ${receipt.contractAddress}`);
+```
+
+### Connect to existing document store
+
+```ts
+import { DocumentStore__factory } from "@trustvc/document-store";
+import { Wallet, ethers } from "ethers";
+
+const wallet = new Wallet("privateKey");
+const provider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/YOUR_INFURA_KEY");
+const signer = wallet.connect(provider);
+
+// Connect to existing document store
+const documentStore = DocumentStore__factory.connect(
+  "0x63A223E025256790E88778a01f480eBA77731D04",
+  signer
+);
+
+console.log(`Document Store Name: ${await documentStore.name()}`);
+// Document Store Name: My Document Store
+```
+
+Congratulations! You have successfully deployed a document store.
+
+Next we take a look at configuring the DNS.
