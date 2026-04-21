@@ -6,7 +6,7 @@ sidebar_label: How to create W3C VC Document
 
 # How to create W3C VC Document
 
-This guide demonstrates how to create a complete W3C VC document using TradeTrust. The process covers everything from key generation and DID setup to document creation, signing, minting for transferability, and verification.
+This guide demonstrates how to create a complete W3C VC document using TrustVC. The process covers everything from key generation and DID setup to document creation, signing, minting for transferability, and verification.
 
 ## Prerequisites
 
@@ -172,7 +172,7 @@ For Electronic Transferable Records (ETRs), the recommended approach is to use *
 
 #### A. Document Revocation (Bit String)
 
-In TradeTrust, the Bitstring Status List (also called StatusList2021) is used for revocation or suspension of Verifiable Credentials (VCs) without modifying the credentials themselves. This mechanism allows issuers to efficiently manage the status of multiple credentials using a single, compact, and publicly hosted bitstring.
+In TrustVC, the Bitstring Status List (also called StatusList2021) is used for revocation or suspension of Verifiable Credentials (VCs) without modifying the credentials themselves. This mechanism allows issuers to efficiently manage the status of multiple credentials using a single, compact, and publicly hosted bitstring.
 
 **When to use Bitstring Revocation:**
 - **Off-chain revocation**: This is an off-chain mechanism, meaning revocation status is not stored on the blockchain.
@@ -221,7 +221,7 @@ TOKEN_REGISTRY_ADDRESS=<your_token_registry_address>
 
 ### 4. Creating a W3C Verifiable Credential Using Document Builder
 
-Now we'll use TrustVC's **DocumentBuilder** to create a W3C Verifiable Credential. The DocumentBuilder provides a clean, intuitive way for constructing verifiable credentials that comply with W3C standards while integrating seamlessly with TradeTrust's ecosystem.
+Now we'll use TrustVC's **DocumentBuilder** to create a W3C Verifiable Credential. The DocumentBuilder provides a clean, intuitive way for constructing verifiable credentials that comply with W3C standards while integrating seamlessly with TrustVC's ecosystem.
 
 Depending on your document status approach from Section 3, you'll configure the `credentialStatus` differently:
 
@@ -467,7 +467,7 @@ export const verifyW3CDocument = async (
 
 ```
 
-The verification process checks multiple aspects of your document. To understand the different components of verification and what each fragment represents, refer to the [TradeTrust verification overview](/docs/introduction/key-components-of-tradetrust/w3c-vc/verifying-documents/overview), and the different [W3C verification fragments](/docs/tutorial/verifier#w3c-verifiers)
+The verification process checks multiple aspects of your document. To understand the different components of verification and what each fragment represents, refer to the [TrustVC verification overview](/docs/introduction/key-components-of-tradetrust/w3c-vc/verifying-documents/overview), and the different [W3C verification fragments](/docs/tutorial/verifier#w3c-verifiers)
 
 ## Running the Complete Workflow
 
@@ -524,7 +524,7 @@ npm run dev
 
 ## Conclusion
 
-You have successfully created a complete W3C Verifiable Credential document using TradeTrust. The document is now:
+You have successfully created a complete W3C Verifiable Credential document using TrustVC. The document is now:
 
 - ✅ Digitally signed using ECDSA-SD-2023 or BBS-2023 signatures
 - ✅ Minted as a transferable token on the blockchain

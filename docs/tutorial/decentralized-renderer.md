@@ -4,11 +4,11 @@ title: Decentralized Renderer
 sidebar_label: Decentralized Renderer
 ---
 
-This guide walks you through the process of creating a custom decentralized renderer for TradeTrust documents. TradeTrust documents are designed to be both machine-readable and human-readable, and a renderer is needed to present the JSON data in a visually appealing way.
+This guide walks you through the process of creating a custom decentralized renderer for TrustVC documents. TrustVC documents are designed to be both machine-readable and human-readable, and a renderer is needed to present the JSON data in a visually appealing way.
 
 ## Source code and demo repository
 
-TradeTrust provides a template repository to help you get started quickly: [TradeTrust/decentralized-renderer](https://github.com/TradeTrust/tradetrust-decentralized-renderer). You can use this as a starting point, fork it for your own renderer implementation.
+TrustVC provides a template repository to help you get started quickly: [TradeTrust/decentralized-renderer](https://github.com/TradeTrust/tradetrust-decentralized-renderer). You can use this as a starting point, fork it for your own renderer implementation.
 
 ## Prerequisites
 

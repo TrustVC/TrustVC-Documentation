@@ -4,9 +4,9 @@ title: Working with Attachments
 sidebar_label: Working with Attachments
 ---
 
-# Working with Attachments in TradeTrust Documents
+# Working with Attachments in TrustVC Documents
 
-TradeTrust allows you to attach files directly to your verifiable documents and credentials, making them part of the document's integrity verification. This guide focuses primarily on the recommended W3C Verifiable Credentials format, with references to legacy formats for backward compatibility.
+TrustVC allows you to attach files directly to your verifiable documents and credentials, making them part of the document's integrity verification. This guide focuses primarily on the recommended W3C Verifiable Credentials format, with references to legacy formats for backward compatibility.
 
 **W3C Verifiable Credentials (Recommended)**: Attachments are included within the credentialSubject
 
@@ -18,18 +18,18 @@ Attachments enable you to bundle supporting files with your verifiable documents
 
 ## Understanding Attachments
 
-Attachments in TradeTrust documents are files that are embedded directly within the document itself. These can include:
+Attachments in TrustVC documents are files that are embedded directly within the document itself. These can include:
 
 - Supporting documentation (PDFs, images)
 - Additional certificates
 - Supplementary information
 - Any other file types that need to be bundled with the document
 
-Attachments are stored as plain base64-encoded strings within the document structure, allowing them to be included in the document hash and therefore be part of the document's integrity verification. Unlike web contexts where data URLs (e.g., `data:application/pdf;base64,...`) are common, TradeTrust attachments should contain only the raw base64-encoded data without any prefix.
+Attachments are stored as plain base64-encoded strings within the document structure, allowing them to be included in the document hash and therefore be part of the document's integrity verification. Unlike web contexts where data URLs (e.g., `data:application/pdf;base64,...`) are common, TrustVC attachments should contain only the raw base64-encoded data without any prefix.
 
 ## Attachment Structure
 
-For broad compatibility with TradeTrust, we recommend the following attachment structure:
+For broad compatibility with TrustVC, we recommend the following attachment structure:
 
 | Field | Type | Description | Required | Notes |
 |-------|------|-------------|----------|-------|
@@ -37,9 +37,9 @@ For broad compatibility with TradeTrust, we recommend the following attachment s
 | `filename` | string | Name of the file | Yes* | Example: "invoice.pdf" (also supports `fileName` in OA v3) |
 | `mimeType` | string | MIME type of the file | Yes* | Example: "application/pdf" (also supports `type` in OA v2) |
 
-*Required for proper rendering in TradeTrust Verification Website
+*Required for proper rendering in TrustVC Verification Website
 
-This structure is preferred for new documents. However, the TradeTrust platform, particularly its decentralized renderer, is designed to be flexible and can parse attachments from older OpenAttestation (OA) v2 and v3 formats as well.
+This structure is preferred for new documents. However, the TrustVC platform, particularly its decentralized renderer, is designed to be flexible and can parse attachments from older OpenAttestation (OA) v2 and v3 formats as well.
 
 ### Important Considerations for Attachments
 
@@ -47,11 +47,11 @@ When working with attachments, keep these points in mind:
 
 - **File Size**: Large attachments increase the overall document size, which can impact performance and storage. Consider compressing files where appropriate.
 - **MIME Types**: Always specify the correct MIME type (e.g., `application/pdf`, `image/jpeg`, `text/csv`) to ensure proper handling.
-- **Format Variations**: While the TradeTrust renderer supports variations in field names for backward compatibility, using the recommended structure is best practice for new documents.
+- **Format Variations**: While the TrustVC renderer supports variations in field names for backward compatibility, using the recommended structure is best practice for new documents.
 
 ### Renderer Parsing and Legacy Support
 
-The TradeTrust decentralized renderer processes attachments to extract the necessary information for display. It primarily looks for the recommended fields (`data`, `filename`, `mimeType`) but also checks for common variations found in OA v2 and OA v3 documents.
+The TrustVC decentralized renderer processes attachments to extract the necessary information for display. It primarily looks for the recommended fields (`data`, `filename`, `mimeType`) but also checks for common variations found in OA v2 and OA v3 documents.
 
 The following code snippet from `decentralized-renderer-react-components/src/utils.ts` illustrates how the renderer extracts attachment details:
 
@@ -286,13 +286,13 @@ For OpenAttestation v3 documents, attachments are added at the root level:
 ```
 </details>
 
-## Handling Attachments in TradeTrust Verification Website
+## Handling Attachments in TrustVC Verification Website
 
-TradeTrust's Verification Website automatically detects and displays attachments in the document viewer. Attachments appear as tabs alongside the main document view, allowing users to switch between the main document and its attachments.
+TrustVC's Verification Website automatically detects and displays attachments in the document viewer. Attachments appear as tabs alongside the main document view, allowing users to switch between the main document and its attachments.
 
 ### Supported File Types
 
-The TradeTrust renderer can display various file types directly in the browser:
+The TrustVC renderer can display various file types directly in the browser:
 
 - **PDFs**: Rendered using the browser's built-in PDF viewer
 - **Images** (JPEG, PNG, GIF, etc.): Displayed directly in the viewer

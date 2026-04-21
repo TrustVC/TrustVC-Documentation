@@ -4,7 +4,7 @@ title: Creator
 sidebar_label: Creator
 ---
 
-This guide walks you through creating a backend service for minting tokens on the blockchain using TradeTrust's Token Registry. You'll learn how to set up a secure and scalable backend infrastructure that enables the creation and management of transferable documents on the blockchain.
+This guide walks you through creating a backend service for minting tokens on the blockchain using TrustVC's Token Registry. You'll learn how to set up a secure and scalable backend infrastructure that enables the creation and management of transferable documents on the blockchain.
 
 ## What You'll Learn
 
@@ -18,7 +18,7 @@ This guide walks you through creating a backend service for minting tokens on th
 This guide is designed for developers who want to:
 
 - Build backend services that interact with blockchain networks
-- Create and manage transferable documents using TradeTrust
+- Create and manage transferable documents using TrustVC
 - Understand the implementation of did:web and Token Registry
 
 ## Prerequisites

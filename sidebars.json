@@ -8,7 +8,41 @@
       "tutorial/decentralized-renderer"
     ],
     "How Tos": [
-      "how-tos/deployment",
+      {
+        "label": "W3C Verifiable Credentials",
+        "type": "category",
+        "items": [
+          "how-tos/create-w3c-document",
+          "how-tos/contexts",
+          "how-tos/credential-subject",
+          "how-tos/credential-status",
+          "how-tos/bitstring",
+          "how-tos/attachments"
+        ]
+      },
+      {
+        "label": "Issuer Identity",
+        "type": "category",
+        "items": [
+          "how-tos/issuer/did-web",
+          {
+            "label": "OA (Legacy)",
+            "type": "category",
+            "collapsed": true,
+            "items": ["how-tos/issuer/dns-did", "how-tos/issuer/dns-txt"]
+          }
+        ]
+      },
+      "how-tos/verifydocument",
+      {
+        "label": "Transferable Records",
+        "type": "category",
+        "items": [
+          "how-tos/deployment",
+          "how-tos/transactions",
+          "how-tos/fetch-endorsement-chain"
+        ]
+      },
       {
         "label": "Decentralized Renderer",
         "type": "category",
@@ -18,28 +52,11 @@
           "how-tos/decentralized-renderer/template-advanced-features"
         ]
       },
-      {
-        "label": "Issuer",
-        "type": "category",
-        "items": [
-          "how-tos/issuer/did-web",
-          {
-            "label": "OA (Legacy)",
-            "type": "category",
-            "items": ["how-tos/issuer/dns-did", "how-tos/issuer/dns-txt"]
-          }
-        ]
-      },
-      "how-tos/contexts",
-      "how-tos/credential-subject",
-      "how-tos/attachments",
-      "how-tos/bitstring",
       "how-tos/implementing-qr-codes",
-      "how-tos/credential-status",
-      "how-tos/create-w3c-document",
       {
-        "label": "Issuing OpenAttestation Documents",
+        "label": "OpenAttestation (Legacy)",
         "type": "category",
+        "collapsed": true,
         "items": [
           "how-tos/open-attestation/prerequisites",
           {
@@ -152,9 +169,6 @@
           }
         ]
       },
-      "how-tos/transactions",
-      "how-tos/verifydocument",
-      "how-tos/fetch-endorsement-chain",
       {
         "label": "Advanced",
         "type": "category",
