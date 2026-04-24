@@ -633,9 +633,11 @@ export const registry = {
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | - If the document contains renderMethod, it signifies that the decentralized renderer's template is missing. <br/> - If the document does not contain renderMethod, it signifies that the template has been missed configured. <br/> ![Missing Renderer](/docs/how-tos/decentralized-renderer/missing-renderer.png) |
 
+#### Example of fallback renderer {#fallback-renderer}
+
 | **Example of fallback renderer**                                                                                                     |
 | :----------------------------------------------------------------------------------------------------------------------------------- |
-| - The renderMethod id URL, returned 4xx or 5xx <br/> <img id="fallback-renderer" alt="Fallback Renderer" src="/docs/how-tos/decentralized-renderer/fallback-renderer.png" /> |
+| - The renderMethod id URL, returned 4xx or 5xx <br/> <img alt="Fallback Renderer" src="/docs/how-tos/decentralized-renderer/fallback-renderer.png" /> |
 
 ### Issue 3: Template Renders Slowly or Causes Browser Lag
 

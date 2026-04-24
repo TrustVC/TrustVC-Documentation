@@ -894,4 +894,4 @@ You should now be able to access the decentralized renderer application at `http
 
 ## Advanced Template Features
 
-For advanced template features such as multiple views, print-friendly views and adding images and QR codes, please refer to the [Template Implementation](/docs/how-tos/decentralized-renderer/template-implementation.md) documentation.
+For advanced template features such as multiple views, print-friendly views and adding images and QR codes, please refer to the [Template Implementation](/docs/how-tos/decentralized-renderer/template-advanced-features) documentation.

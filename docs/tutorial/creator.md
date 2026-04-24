@@ -161,9 +161,9 @@ Specify the following values:
 
 - `DOMAIN`: The domain name where you want to host your did:web.
 - `WALLET_PRIVATE_KEY`: The private key of the wallet you want to use to deploy the Token Registry contract.
-- `NET`: The network you want to use to deploy the Token Registry contract. [List of Supported Network](/docs/introduction/key-components-of-tradetrust/blockchain/supported-network)
+- `NET`: The network you want to use to deploy the Token Registry contract. [List of Supported Network](/docs/getting-started#supported-networks)
 
-Depending on your selected network, you will need to set up the RPC URL. Retrieve the API KEY and add it to the .env file. Refer to [here](/docs/4.x/topics/advanced/additional-network-metamask-guide#sign-up-for-infuras-api-key) to guide you on your first API KEY.
+Depending on your selected network, you will need to set up the RPC URL. Retrieve the API KEY and add it to the .env file. Refer to [here](/docs/how-tos/advanced/additional-network-metamask-guide#sign-up-for-infuras-api-key) to guide you on your first API KEY.
 
 :::tip
 If you would like to test and validate the issued document on the web, you can use ngrok to expose your local server to the internet.
@@ -246,8 +246,6 @@ While the public did:web will be stored in the did.json file.
 
 :::important
 You will need to set up the RPC URL for your selected network. Retrieve the API KEY and add it to the `.env` file.
-
-More details [here](/docs/4.x/topics/advanced/additional-network-metamask-guide/#fill-in-the-network-configuration-for-the-new-network-as-required)
 :::
 
 <details>
@@ -429,7 +427,7 @@ Visit [https://dev.uniresolver.io/](https://dev.uniresolver.io/) and enter the d
 
 ### 9. Update the express app to allow the creation of transferable documents
 
-In this step, we will add a route to allow the creation of transferable documents using the document builder. It will allow the creation of transferable documents with the document type `BILL_OF_LADING`. We will be using the default renderer to preview the document. To learn more about decentralized rendering, refer to the [renderer documentation](/docs/introduction/key-components-of-tradetrust/add-ons/document-preview-templates/decentralised-renderer).
+In this step, we will add a route to allow the creation of transferable documents using the document builder. It will allow the creation of transferable documents with the document type `BILL_OF_LADING`. We will be using the default renderer to preview the document. To learn more about decentralized rendering, refer to the [renderer documentation](/docs/how-tos/decentralized-renderer/decentralized-renderer-guide).
 
 :::note
 For documents with attachments, you will need to increase the limit of the request body.
