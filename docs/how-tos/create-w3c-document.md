@@ -161,7 +161,7 @@ STABILITY_TESTNET_API_KEY=
 INFURA_API_KEY=
 ```
 
-> **Note**: The API keys above are required for deploying the token registry on different networks. You can find detailed instructions on how to setup these API keys in the [network configuration guide](/docs/4.x/topics/advanced/additional-network-metamask-guide/#fill-in-the-network-configuration-for-the-new-network-as-required).
+> **Note**: The API keys above are required for deploying the token registry on different networks. You can find detailed instructions on how to setup these API keys in the [network configuration guide](/docs/how-tos/advanced/additional-network-metamask-guide).
 
 ### 3. Document Status
 
@@ -467,7 +467,7 @@ export const verifyW3CDocument = async (
 
 ```
 
-The verification process checks multiple aspects of your document. To understand the different components of verification and what each fragment represents, refer to the [TrustVC verification overview](/docs/introduction/key-components-of-tradetrust/w3c-vc/verifying-documents/overview), and the different [W3C verification fragments](/docs/tutorial/verifier#w3c-verifiers)
+The verification process checks multiple aspects of your document. To understand the different components of verification and what each fragment represents, refer to the [TrustVC verification overview](/docs/how-tos/verifydocument), and the different [W3C verification fragments](/docs/tutorial/verifier#w3c-verifiers)
 
 ## Running the Complete Workflow
 

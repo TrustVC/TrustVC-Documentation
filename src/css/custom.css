@@ -22,7 +22,8 @@
 
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: "Gilroy", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
 
   --docusaurus-highlighted-code-line-bg: rgba(104, 106, 210, 0.1);
 }
