@@ -82,56 +82,70 @@ So to recap the steps on setting your own local addressbook:
 
 ## Address Resolver (Third party)
 
-For our reference implementation, we are using Google Sheets as our "database" for demonstrating the third party address resolution concept conveniently. Similar to local address book, think of it as a list of records that map ethereum addresses to a defined label name within the google sheet columns.
+Third-party resolver lets you fetch address book entries from an external endpoint instead of importing CSV manually. Think of it as a remote address book that returns name/address pairs in JSON.
 
-In the settings page you can add your third party address resolver. It enables you to add a third party's endpoint to resolve Ethereum addresses to their company's name. With Ethereum addresses being cryptic to end users, this Address Resolver will act as a digital address book, think of it as your mobile phone contact list, we only remember names, not numbers. The address book allows end users to see familiar identifiers such as `ABC Pte Ltd`. Once the Address Resolver endpoint has been added, when you verify a document with an identifiable Ethereum address, it will look like the following:
+In the settings page you can add your third-party resolver endpoint to resolve Ethereum addresses to a company's name. With Ethereum addresses being cryptic to end users, this Address Resolver acts like a digital contact list where users see familiar identifiers such as `ABC Pte Ltd`. Once the endpoint is added and saved, resolvable Ethereum addresses appear with their resolved name:
 
 ![Address-resolved](/docs/reference/trustvc-website/address-resolved.png)
 
 You can see that the company's name and resolver details will also be displayed above the resolved Ethereum
 address.
 
-> You are not restricted to Google Sheets approach and is free to use any other backend solutions.
+### How to set up a 3rd party Address Resolver
 
-### How to set up a 3rd party Address Resolver (Google Sheet approach)
+#### 1) Create an endpoint that returns JSON
 
-_Prerequisite: [Google sheets API](https://developers.google.com/sheets/api/reference/rest)._
+Your endpoint must return an array of objects with:
 
-- Go to [Google Console](https://console.cloud.google.com/apis/library) and create a new project.
-  ![create project](/docs/reference/trustvc-website/create-project.png)
-- Enable Google Sheets API. Once enabled, it should be added to the enabled API list.
-  ![enable api](/docs/reference/trustvc-website/enable-api.png)
-- Create an API key.
-  ![create key](/docs/reference/trustvc-website/create-key.png)
-- Create and populate a Google Sheet with columns of:
-  - `Name` (The name of the company)
-  - `Address` (The Ethereum address of the company)
-- Set Google Sheet to public.
-- Setup the third party resolution service by configuring it to access Google Sheets with the API key from step 1.
-  - Use your own resolver service implementation repository for deployment.
-  - Define these environment variables in your deployment secrets:
-    - SHEETS_API_KEY = Your created API key from Google Console.
-    - SHEETS_ID = Your google sheet ID.
-    - SHEETS_RANGE = Your google sheet cell range.
-    - STAGING_AWS_ACCESS_KEY_ID = Your AWS access key id.
-    - STAGING_AWS_SECRET_ACCESS_KEY = Your AWS access key secret.
-  - Deploy this service using your CI/CD pipeline.
-  - Go to API Gateway in your AWS account. Create a custom domain name of your preference. Take note of API Gateway domain name.
-    ![api gateway](/docs/reference/trustvc-website/api-gateway.png)
-  - Click API mappings and configure it by selecting your deployed resolver API from the dropdown list.
-  - Go to Route53 and create a new CNAME record. The value is your API Gateway domain name.
-    ![route53](/docs/reference/trustvc-website/route53.png)
-  - Once set, wait for a few minutes and your API endpoint will be accessible in the custom domain name that you've created. This will be what we call the third party resolution service endpoint.
-- Go to the website application, clicking the "+ Add" button in the settings page will show you following:
+- `name`: display label (for example, company name)
+- `address`: Ethereum wallet address
 
-![Settings](/docs/reference/trustvc-website/address-resolver-empty-form.png)
+Supported response shapes:
 
-- Fill in the following:
-  - `name` (A label you want to name this endpoint, this will be reflected as the "Resolved by")
-  - `endpoint` (The third party resolution service endpoint that you've deployed)
-  - `API Header and API Key` (The authentication configured on the resolver service)
+```json
+[
+  { "name": "Alice Pte Ltd", "address": "0x1111111111111111111111111111111111111111" },
+  { "name": "Bob Shipping", "address": "0x2222222222222222222222222222222222222222" }
+]
+```
 
-![Settings-filled](/docs/reference/trustvc-website/address-resolver-filled-form.png)
+or nested under one of these keys:
+
+```json
+{
+  "entries": [
+    { "name": "Alice Pte Ltd", "address": "0x1111111111111111111111111111111111111111" }
+  ]
+}
+```
+
+```json
+{
+  "results": [
+    { "name": "Alice Pte Ltd", "address": "0x1111111111111111111111111111111111111111" }
+  ]
+}
+```
+
+#### 2) Host the endpoint
+
+You can host it using either:
+
+- **Simple**: static JSON file on a public URL (for example GitHub Pages, S3, or any static host)
+- **Advanced**: API endpoint (for example Node/Express, Python/Flask, serverless functions)
+
+#### 3) Configure resolver in Settings
+
+- Go to the website application. Click the `+ Add` button in the Settings page:
+
+  ![Settings](/docs/reference/trustvc-website/address-resolver-empty-form.png)
+
+- Fill in:
+  - `name` (label for this resolver; shown as "Resolved by")
+  - `endpoint` (the URL returning JSON entries)
+  - `API Header` and `API Key` (optional; use for protected endpoints, for example `X-API-Key` + `secret123`)
+
+  ![Settings-filled](/docs/reference/trustvc-website/address-resolver-filled-form.png)
 
 ---
 
