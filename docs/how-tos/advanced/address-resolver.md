@@ -134,6 +134,10 @@ You can host it using either:
 - **Simple**: static JSON file on a public URL (for example GitHub Pages, S3, or any static host)
 - **Advanced**: API endpoint (for example Node/Express, Python/Flask, serverless functions)
 
+For production, secure your resolver endpoint.
+
+- If your endpoint is protected, configure an API header and API key in resolver settings (for example `x-api-key` + your token).
+
 #### 3) Configure resolver in Settings
 
 - Go to the website application. Click the `+ Add` button in the Settings page:
@@ -157,8 +161,9 @@ The "Name" input refers to the name of the address resolver that contains all th
 
 #### Endpoint
 
-The "Endpoint" input refers to the endpoint that will be called to resolve an Ethereum Address.
-A demo hosted endpoint can be provided from your deployed resolver service endpoint.
+The "Endpoint" input is the URL that will be called to resolve an Ethereum address.
+Use the URL of your own deployed resolver service.
+Example: `https://resolver.your-domain.com/api/resolve`.
 
 ![return-search](/docs/reference/trustvc-website/return-search.png)
 
