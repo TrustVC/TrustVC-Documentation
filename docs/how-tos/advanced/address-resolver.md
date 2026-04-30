@@ -149,6 +149,12 @@ For production, secure your resolver endpoint.
   - `endpoint` (the URL returning JSON entries)
   - `API Header` and `API Key` (optional; use for protected endpoints, for example `X-API-Key` + `secret123`)
 
+> **Security notice:** API headers/keys configured in resolver Settings are used by the TrustVC web app in the browser, so they are exposed in network requests and browser storage. Do not treat these values as highly sensitive production secrets.
+>
+> **Recommended for production:** Use a server-side proxy for resolver calls so credentials stay server-side and can be rotated safely while protecting the upstream endpoint.
+>
+> **If you cannot use a proxy yet:** Use short-lived tokens or server-hosted credentials for production workloads.
+
   ![Settings-filled](/docs/reference/trustvc-website/address-resolver-filled-form.png)
 
 ---
