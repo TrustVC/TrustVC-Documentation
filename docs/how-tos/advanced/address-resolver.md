@@ -57,7 +57,7 @@ So to recap the steps on setting your own local addressbook:
         const addressBook: Record<string, string> = {};
 
         data.forEach((row: any) => {
-          const nameText = row.Name || row.name || row.Identifier || row.identifier;
+          const nameText = row.Name || row.name;
           const addressText = row.Address || row.address;
           if (!addressText || !nameText) return;
           addressBook[addressText.toLowerCase()] = nameText;
