@@ -1,16 +1,16 @@
 ---
 id: migration-trustvc
-title: "Migration Guide: TrustVC to TrustVC SDK"
-sidebar_label: TrustVC to TrustVC
+title: "Migration Guide: TradeTrust to TrustVC SDK"
+sidebar_label: TradeTrust to TrustVC
 ---
 
-This migration guide will help you transition from using the **TrustVC** libraries (@tradetrust-tt/tt-verify, @tradetrust-tt/tradetrust) to **TrustVC**. In addition, it introduces the new W3C Verifiable Credentials (VC) integration for managing verifiable credentials. This version of **TrustVC** integrates both token-based credentials and W3C VC to provide a unified credential management solution.
+This migration guide will help you transition from using the **TradeTrust** libraries (@tradetrust-tt/tt-verify, @tradetrust-tt/tradetrust) to **TrustVC**. In addition, it introduces the new W3C Verifiable Credentials (VC) integration for managing verifiable credentials. This version of **TrustVC** integrates both token-based credentials and W3C VC to provide a unified credential management solution.
 
 ## 1. What’s New?
 
 **TrustVC Integration**
 
-- **TrustVC** is a comprehensive library that combines several TrustVC libraries, including Token Registry v5, W3C Verifiable Credentials, and OpenAttestation Verifiable Documents. By using **TrustVC**, you can manage both credential documents and token-based credentials seamlessly in a unified solution.
+- **TrustVC** is a comprehensive library that combines several TradeTrust libraries, including Token Registry v5, W3C Verifiable Credentials, and OpenAttestation Verifiable Documents. By using **TrustVC**, you can manage both credential documents and token-based credentials seamlessly in a unified solution.
 
 **Token Registry v5**
 
