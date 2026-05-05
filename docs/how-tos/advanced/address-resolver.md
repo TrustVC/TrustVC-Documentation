@@ -38,9 +38,7 @@ So to recap the steps on setting your own local addressbook:
       const readAsText = async (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
-          if (reader.error) {
-            reject(reader.error);
-          }
+          reader.onerror = () => reject(reader.error);
           reader.onload = () => resolve(reader.result as string);
           reader.readAsText(file);
         });
