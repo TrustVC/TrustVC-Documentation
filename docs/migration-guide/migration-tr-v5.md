@@ -10,7 +10,7 @@ This migration guide helps you transition from Token Registry v4 to **TrustVC** 
 
 **TrustVC Integration**
 
-- **TrustVC** is a comprehensive library that combines several TradeTrust libraries, including Token Registry v5, W3C Verifiable Credentials, and OpenAttestation Verifiable Documents. By using **TrustVC**, you can manage both credential documents and token-based credentials seamlessly in a unified solution.
+- **TrustVC** is a comprehensive library that combines several TrustVC libraries, including Token Registry v5, W3C Verifiable Credentials, and OpenAttestation Verifiable Documents. By using **TrustVC**, you can manage both credential documents and token-based credentials seamlessly in a unified solution.
 
 **Token Registry v5**
 

@@ -13,4 +13,4 @@ Error: processing response error (body="{\"jsonrpc\":\"2.0\",\"id\":56,\"error\"
 
 To resolve this issue, ensure that your wallet address is whitelisted before attempting to transact on the Astron L2 network.
 
-More information regarding the whitelist will be provided. For any inquiries or additional information, feel free to contact us at tradetrust@imda.gov.sg.
+More information regarding the whitelist will be provided. For any inquiries or additional information, feel free to contact us via the [Official Page](https://trustvc.io/contact) or drop us an email at [tvc-support@dextech.ai](mailto:tvc-support@dextech.ai).

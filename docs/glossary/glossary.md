@@ -27,8 +27,8 @@ A new type of identifier designed to enable verifiable, self-sovereign digital i
 [Learn more](https://www.w3.org/TR/did-core/)
 
 ### Document Store
-A smart contract on the Ethereum network that records the issuance, revocation, and transfer status of TradeTrust Verifiable Documents. It enables the management of document validity and ownership transfers.  
-[Learn more](https://github.com/TradeTrust/document-store)
+A smart contract on the Ethereum network that records the issuance, revocation, and transfer status of TrustVC Verifiable Documents. It enables the management of document validity and ownership transfers.  
+[Learn more](https://github.com/TrustVC/document-store)
 
 ### Ether
 The native cryptocurrency of the Ethereum blockchain, used to power transactions and interact with smart contracts.  
