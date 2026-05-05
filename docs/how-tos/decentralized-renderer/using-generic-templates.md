@@ -6,11 +6,11 @@ sidebar_label: Using Generic Templates
 
 # Using Generic Templates for Document Preview
 
-TradeTrust provides a set of pre-designed generic templates for common document types. These templates offer a quick and convenient way to render TradeTrust documents without having to create custom renderers from scratch. This guide will walk you through the process of using these generic templates for your documents.
+TrustVC provides a set of pre-designed generic templates for common document types. These templates offer a quick and convenient way to render TrustVC documents without having to create custom renderers from scratch. This guide will walk you through the process of using these generic templates for your documents.
 
 ## Overview of Available Templates
 
-TradeTrust currently offers the following generic templates:
+TrustVC currently offers the following generic templates:
 
 | Template Name | Description |
 | --- | --- |
@@ -20,13 +20,13 @@ TradeTrust currently offers the following generic templates:
 | **Invoice** | A commercial document issued by a seller to a buyer, detailing the products or services provided, their quantities and agreed prices, and the total amount due. |
 | **Warehouse Receipt** | A document issued by a warehouse operator acknowledging the receipt of goods for storage. |
 
-These templates are hosted at `https://generic-templates.tradetrust.io` and can be previewed in the [TradeTrust Gallery](https://gallery.tradetrust.io/), other legacy templates can be previewed in the [Generic Templates Storybook](https://storybook.generic-templates.tradetrust.io/).
+These templates are hosted at `https://generic-templates.tradetrust.io` and can be previewed in the [TrustVC Gallery](https://gallery.tradetrust.io/), other legacy templates can be previewed in the [Generic Templates Storybook](https://storybook.generic-templates.tradetrust.io/).
 
 ## When to Use Generic Templates
 
 Generic templates are ideal for:
 
-- **Demonstration purposes** - When you want to quickly demonstrate TradeTrust functionality
+- **Demonstration purposes** - When you want to quickly demonstrate TrustVC functionality
 - **Prototyping** - When you're in the early stages of development and need a working renderer
 - **Testing** - When you want to test document issuance and verification without creating a custom renderer
 - **Simple use cases** - When your document structure aligns well with one of the available templates
@@ -124,9 +124,9 @@ Each template requires specific data fields. Below are examples for common templ
 
 ### 4. Create and Issue Your Document
 
-You can create and issue sample document using the [TradeTrust Creator (V5 - Mainnet)](https://v5-token-registry.tradetrust.io/creator) / [TradeTrust Creator (V5 - Testnet)](https://v5-token-registry.dev.tradetrust.io/creator).
+You can create and issue sample document using the [TrustVC Creator (V5 - Mainnet)](https://v5-token-registry.tradetrust.io/creator) / [TrustVC Creator (V5 - Testnet)](https://v5-token-registry.dev.tradetrust.io/creator).
 
-Alternatively, you can setup your own creator by following the [TradeTrust Creator Tutorial](/docs/tutorial/creator.md).
+Alternatively, you can setup your own creator by following the [TrustVC Creator Tutorial](/docs/tutorial/creator.md).
 
 ## Limitations of Generic Templates
 
@@ -141,6 +141,6 @@ For these reasons, generic templates are recommended primarily for demonstration
 
 ## Conclusion
 
-Generic templates provide a quick and convenient way to render TradeTrust documents without having to create custom renderers. They are ideal for demonstration, testing, and prototyping purposes, but for production use, consider creating a custom decentralized renderer for greater flexibility and branding control.
+Generic templates provide a quick and convenient way to render TrustVC documents without having to create custom renderers. They are ideal for demonstration, testing, and prototyping purposes, but for production use, consider creating a custom decentralized renderer for greater flexibility and branding control.
 
-By following the steps in this guide, you can effectively use TradeTrust's generic templates to render your documents in a visually appealing way.
+By following the steps in this guide, you can effectively use TrustVC's generic templates to render your documents in a visually appealing way.

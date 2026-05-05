@@ -16,11 +16,11 @@ This segment is retained for legacy support for Open Attestation Document. For m
 
 > smart contract deployment is the deployment of either document store smart contract or token registry smart contracts.
 
-In the current implementation of TradeTrust, we are using the Domain Name System (DNS) as the method of issuer identity verification.
+In the current implementation of TrustVC, we are using the Domain Name System (DNS) as the method of issuer identity verification.
 A one-liner introduction to the DNS system can be summarised as: "Phonebook for the Internet". Its primary purpose is to resolve human readable names such as "google.com", or "tradetrust.io", etc. to a set of records.
 The most common records are 'A records', which resolve to IP addresses - this allows network routing to operate over the Internet.
 
-For TradeTrust, we are using the `TXT` type of record, which simply allows us to store textual data. The textual data we store indicates the deployed Document Store / Token Registry address that the domain administrator trusts.
+For TrustVC, we are using the `TXT` type of record, which simply allows us to store textual data. The textual data we store indicates the deployed Document Store / Token Registry address that the domain administrator trusts.
 
 By allowing the DNS system to be used as an identity registry, we let domain name owners claim ownership of a Document Store / Token Registry smart contract on the Ethereum / Polygon Blockchain.
 
@@ -92,7 +92,7 @@ An example of a valid `TXT` record for Ethereum `mainnet` network is as shown:
 | ---- | --------------------- | ------------------------------------------------------------------------------- |
 | TXT  | sandbox.tradetrust.io | "openatts net=ethereum netId=1 addr=0x9db35C07350e9a16C828dAda37fd9c2923c75812" |
 
-The `netId` corresponds to the [chain ID for the different Ethereum networks](https://chainid.network/). Here is a list of TradeTrust supported networks:
+The `netId` corresponds to the [chain ID for the different Ethereum networks](https://chainid.network/). Here is a list of TrustVC supported networks:
 
 | Chain ID   | netID      | Name                     | Network Name         |
 | ---------- | ---------- | ------------------------ | -------------------- |

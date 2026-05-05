@@ -12,7 +12,7 @@ import Flow from "../flow.mdx";
 
 > For the current step, you can either opt to use the [CLI](/docs/how-tos/open-attestation/transferable-records/wrapping-document/wrapping-document-cli) or [Code](/docs/how-tos/open-attestation/transferable-records/wrapping-document/wrapping-document-code).
 
-Every TradeTrust document has a checksum that provides it a tamper-proof property. At the same time, because the checksum can be used to uniquely identify a document, the checksum (or its derived value) will be issued into the token registry as evidence of issuance. To compute the checksum, a `raw document` goes through a process known as `wrapping` to become a `wrapped document`. Only then, the document is ready to be issue.
+Every TrustVC document has a checksum that provides it a tamper-proof property. At the same time, because the checksum can be used to uniquely identify a document, the checksum (or its derived value) will be issued into the token registry as evidence of issuance. To compute the checksum, a `raw document` goes through a process known as `wrapping` to become a `wrapped document`. Only then, the document is ready to be issue.
 
 > Please note that for Transferable Records, there is **NO** batch wrapping.
 
@@ -20,7 +20,7 @@ In this guide, we will learn how to generate the checksum by running the `wrappi
 
 We will use the CLI tool to read all the files in the `raw-documents` folder, wrap them and then output the files in another directory `wrapped-documents`.
 
-A `merkleRoot`, a 64 character long string prepended with `0x` will be generated. The `merkleRoot` is the only information that will be stored onto the Blockchain to verify the issuance status of a TradeTrust document.
+A `merkleRoot`, a 64 character long string prepended with `0x` will be generated. The `merkleRoot` is the only information that will be stored onto the Blockchain to verify the issuance status of a TrustVC document.
 
 From the folder containing the `raw-documents` folder, run:
 

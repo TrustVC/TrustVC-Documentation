@@ -201,14 +201,14 @@ For the examples above, the Credential Status List is hosted at:
 https://example.com/credentials/status/3
 
 :::warning CORS Configuration Required for Interoperability
-Your hosted Status List **must** have CORS enabled. This requires configuring the status list endpoint to return the `Access-Control-Allow-Origin: *` header. Without this configuration, external verifiers (like [ref.tradetrust.io](https://ref.tradetrust.io)) will be blocked by the browser's CORS policy and **cannot check if credentials are revoked or suspended**.
+Your hosted Status List **must** have CORS enabled. This requires configuring the status list endpoint to return the `Access-Control-Allow-Origin: *` header. Without this configuration, external verifiers (like [trustvc.io](https://trustvc.io)) will be blocked by the browser's CORS policy and **cannot check if credentials are revoked or suspended**.
 
 **Why this matters:**
-- This only affects **web-based verifiers** running in browsers (like [ref.tradetrust.io](https://ref.tradetrust.io))
+- This only affects **web-based verifiers** running in browsers (like [trustvc.io](https://trustvc.io))
 - Server-side or native app verifiers are not affected by CORS
 - Testing locally or within your own domain won't reveal this issue
 - The error only appears when external web verifiers try to fetch your status list
-- This is a browser security feature, not a bug in TradeTrust
+- This is a browser security feature, not a bug in TrustVC
 - Verification will fail or show warnings if the status cannot be checked
 
 For detailed instructions on configuring CORS for your status list endpoint, see the [CORS Errors guide](/docs/common-issues/cors-error).

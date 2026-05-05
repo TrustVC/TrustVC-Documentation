@@ -4,9 +4,9 @@ title: Contributing
 sidebar_label: Contributing
 ---
 
-# TradeTrust Community
+# TrustVC Community
 
-Welcome to the **TradeTrust Community**! This page provides an overview of **TrustVC** and how you can contribute.
+Welcome to the **TrustVC Community**! This page provides an overview of **TrustVC** and how you can contribute.
 
 ## Overview
 

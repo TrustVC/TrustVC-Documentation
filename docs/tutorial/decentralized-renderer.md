@@ -8,7 +8,7 @@ This guide walks you through the process of creating a custom decentralized rend
 
 ## Source code and demo repository
 
-TrustVC provides a template repository to help you get started quickly: [TradeTrust/decentralized-renderer](https://github.com/TradeTrust/tradetrust-decentralized-renderer). You can use this as a starting point, fork it for your own renderer implementation.
+TrustVC provides a template repository to help you get started quickly: [TrustVC/decentralized-renderer](https://github.com/TrustVC/decentralized-renderer). You can use this as a starting point, fork it for your own renderer implementation.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ Before starting, ensure you have the following installed:
 Start by cloning the template repository and setting up your project:
 
 ```bash
-git clone https://github.com/TradeTrust/decentralized-renderer.git
+git clone https://github.com/TrustVC/decentralized-renderer.git
 cd decentralized-renderer
 rm -rf .git
 git init

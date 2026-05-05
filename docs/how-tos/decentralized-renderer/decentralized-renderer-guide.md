@@ -6,11 +6,11 @@ sidebar_label: Decentralized Renderer Guide
 
 # Decentralized Renderer Guide
 
-This comprehensive guide covers best practices and troubleshooting for TradeTrust decentralized renderers, helping you build robust, maintainable, and user-friendly document templates.
+This comprehensive guide covers best practices and troubleshooting for TrustVC decentralized renderers, helping you build robust, maintainable, and user-friendly document templates.
 
 ## Introduction
 
-Decentralized renderers are essential components in the TradeTrust ecosystem that provide document preview templates. They allow issuers to define how their documents are displayed while keeping the rendering logic separate from the verification process.
+Decentralized renderers are essential components in the TrustVC ecosystem that provide document preview templates. They allow issuers to define how their documents are displayed while keeping the rendering logic separate from the verification process.
 
 ### Key Concepts
 
@@ -119,7 +119,7 @@ sequenceDiagram
 
 **Remember that your renderer might be used by external systems you don't control.**
 
-Your decentralized renderer will be embedded in various applications, including the TradeTrust document viewer, third-party applications, and other verification portals.
+Your decentralized renderer will be embedded in various applications, including the TrustVC document viewer, third-party applications, and other verification portals.
 
 :::important Important Guidelines
 
@@ -132,7 +132,7 @@ Your decentralized renderer will be embedded in various applications, including 
 
 **Templates must remain available indefinitely.**
 
-Since TradeTrust documents may not expire and could be verified years after issuance:
+Since TrustVC documents may not expire and could be verified years after issuance:
 
 :::note
 
@@ -146,7 +146,7 @@ Since TradeTrust documents may not expire and could be verified years after issu
 
 ### CORS Configuration
 
-Decentralized renderers must support Cross-Origin Resource Sharing (CORS) to function properly with TradeTrust applications.
+Decentralized renderers must support Cross-Origin Resource Sharing (CORS) to function properly with TrustVC applications.
 
 **Best Practice**:
 
@@ -205,10 +205,10 @@ The `useFallbackRenderer` prop ensures that if the third-party renderer fails to
 
 #### 2.&nbsp; Surrounding your template with ErrorBoundary:
 
-TradeTrust provides a `Wrapper` component in the core library that includes an `ErrorBoundary` for catching and displaying template errors. It's recommended to use this component in your templates:
+TrustVC provides a `Wrapper` component in the core library that includes an `ErrorBoundary` for catching and displaying template errors. It's recommended to use this component in your templates:
 
 ```tsx
-// From TradeTrust generic-templates/src/core/Wrapper/Wrapper.tsx
+// From TrustVC generic-templates/src/core/Wrapper/Wrapper.tsx
 import React, { FunctionComponent } from "react";
 import { ErrorBoundary } from "../ErrorBoundary";
 
@@ -651,4 +651,4 @@ export const registry = {
 
 ## Conclusion
 
-Building effective decentralized renderers requires attention to both technical implementation details and user experience considerations. By following these best practices and troubleshooting techniques, you can create robust, maintainable, and user-friendly document templates for the TradeTrust ecosystem.
+Building effective decentralized renderers requires attention to both technical implementation details and user experience considerations. By following these best practices and troubleshooting techniques, you can create robust, maintainable, and user-friendly document templates for the TrustVC ecosystem.

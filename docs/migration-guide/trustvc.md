@@ -6,7 +6,7 @@ sidebar_label: "Introduction: TrustVC"
 
 [**TrustVC**](https://github.com/TrustVC/trustvc) is a comprehensive library designed to simplify the signing and verification processes for [TrustVC W3C Verifiable Credentials (VC)](https://github.com/TrustVC/w3c) and [OpenAttestation Verifiable Documents (VD)](https://github.com/Open-Attestation/open-attestation/). It adheres to the **W3C VC Data Model v2.0** ([W3C Standard](https://www.w3.org/TR/vc-data-model/)), ensuring compatibility and interoperability for Verifiable Credentials.
 
-With **TrustVC**, developers can seamlessly handle both W3C Verifiable Credentials and OpenAttestation Verifiable Documents through an integrated set of functionalities. The library not only simplifies signing and verification but also imports and integrates existing TradeTrust libraries and smart contracts for token registry (V4 and V5), making it a versatile tool for decentralized identity and trust solutions.
+With **TrustVC**, developers can seamlessly handle both W3C Verifiable Credentials and OpenAttestation Verifiable Documents through an integrated set of functionalities. The library not only simplifies signing and verification but also imports and integrates existing TrustVC libraries and smart contracts for token registry (V4 and V5), making it a versatile tool for decentralized identity and trust solutions.
 
 ## Key Features
 
@@ -131,9 +131,9 @@ const signedDocument = {
 const resultFragments = await verifyDocument(signedDocument);
 ```
 
-### 3. Integration with Other TradeTrust Libraries
+### 3. Integration with Other TrustVC Libraries
 
-**TrustVC** is designed to work seamlessly with other TradeTrust libraries, extending their functionality and making it easier to integrate decentralized identity solutions. By leveraging existing TradeTrust tools, **TrustVC** enhances its capabilities for signing, verifying, and managing credentials and documents.
+**TrustVC** is designed to work seamlessly with other TrustVC libraries, extending their functionality and making it easier to integrate decentralized identity solutions. By leveraging existing TrustVC tools, **TrustVC** enhances its capabilities for signing, verifying, and managing credentials and documents.
 
 - **@trustvc/w3c**:
 

@@ -10,7 +10,7 @@ This documentation explains how to implement QR codes in W3C Verifiable Credenti
 
 ## QR Code URL Structure and Payload Schema
 
-QR codes in TradeTrust documents follow a standard URL structure with an encoded JSON payload using the query parameter `q`:
+QR codes in TrustVC documents follow a standard URL structure with an encoded JSON payload using the query parameter `q`:
 
 ```
 https://actions.tradetrust.io?q=<encoded_payload>
@@ -128,7 +128,7 @@ const qrCodeUrl = `https://actions.tradetrust.io?q=${encodeURIComponent(JSON.str
 
 ### Document Encryption
 
-Since documents referenced by QR codes need to be publicly accessible, it's recommended to encrypt them. The TradeTrust system supports the [oa-encryption](https://github.com/Open-Attestation/oa-encryption) library for this purpose:
+Since documents referenced by QR codes need to be publicly accessible, it's recommended to encrypt them. The TrustVC system supports the [oa-encryption](https://github.com/Open-Attestation/oa-encryption) library for this purpose:
 
 1. Encrypt the document:
 
@@ -158,7 +158,7 @@ const payload = {
 
 ### Cross-Origin Resource Sharing (CORS)
 
-If you're hosting documents on a custom backend, ensure you've configured CORS to allow requests from TradeTrust domains:
+If you're hosting documents on a custom backend, ensure you've configured CORS to allow requests from TrustVC domains:
 
 ```
 Access-Control-Allow-Origin: *.tradetrust.io
@@ -166,9 +166,9 @@ Access-Control-Allow-Origin: *.tradetrust.io
 
 ## Custom URL Redirection
 
-Instead of directly using the `ref.tradetrust.io` URL, you can implement a custom reverse proxy to handle QR code redirection:
+Instead of directly using the `trustvc.io` URL, you can implement a custom reverse proxy to handle QR code redirection:
 
-1. Deploy your own redirect service based on [TradeTrust Actions](https://github.com/TradeTrust/actions).
+1. Deploy your own redirect service based on [TrustVC Actions](https://github.com/TrustVC/actions).
 
 2. Configure the service to whitelist allowed redirect domains.
 
@@ -178,18 +178,18 @@ Instead of directly using the `ref.tradetrust.io` URL, you can implement a custo
 https://actions.yourdomain.com?q=<encoded_payload>
 ```
 
-## How TradeTrust Renders QR Codes
+## How TrustVC Renders QR Codes
 
-When a TradeTrust-compatible document with a QR code is loaded, the TradeTrust website:
+When a TrustVC-compatible document with a QR code is loaded, the TrustVC website:
 
-1. When the QR code is scanned, the encoded URL is opened, which redirects to TradeTrust with the document URI.
+1. When the QR code is scanned, the encoded URL is opened, which redirects to TrustVC with the document URI.
 
 2. Extracts the QR code URL using the `getQRCodeLink` function, which checks for:
    - `qrCode.uri` in W3C VC documents
    - `credentialSubject.links.self.href` in OA v3 documents
    - `links.self.href` in OA v2 documents
 
-3. TradeTrust then downloads the document from the specified URI, decrypting it if necessary.
+3. TrustVC then downloads the document from the specified URI, decrypting it if necessary.
 
 4. Renders the URL as a scannable QR code.
 
@@ -200,30 +200,30 @@ To test if your QR code implementation is working correctly:
 
 1. Create a document with a QR code.
 2. Host the document at a publicly accessible URL.
-3. Upload your document to [https://dev.tradetrust.io/](https://dev.tradetrust.io/) / [https://ref.tradetrust.io/](https://ref.tradetrust.io/).
+3. Upload your document to [https://dev.tradetrust.io/](https://dev.tradetrust.io/) / [https://trustvc.io/](https://trustvc.io/).
 4. Verify that the QR code icon appears in the document utility bar.
 5. Click the QR code icon and scan it with a mobile device.
-6. Confirm that scanning the QR code successfully redirects to TradeTrust and loads the document.
+6. Confirm that scanning the QR code successfully redirects to TrustVC and loads the document.
 
 By following these guidelines, you can successfully implement QR codes in your W3C VC and OpenAttestation documents, making them more accessible and easier to verify.
 
-## Implementation Example: Using TradeTrust Functions and Actions
+## Implementation Example: Using TrustVC Functions and Actions
 
-This section provides a complete example of implementing QR codes using TradeTrust's reference implementations.
+This section provides a complete example of implementing QR codes using TrustVC's reference implementations.
 
-### TradeTrust Functions
+### TrustVC Functions
 
 _Prerequisite: [Netlify functions](https://docs.netlify.com/functions/overview/)._
 
-TradeTrust functions is built with Netlify functions. TradeTrust provides a set of API endpoints for demonstration purposes only. Essentially you should have an endpoint service yourself to store your documents so to facilitate rendering of QR code in your web application later on.
+TrustVC functions is built with Netlify functions. TrustVC provides a set of API endpoints for demonstration purposes only. Essentially you should have an endpoint service yourself to store your documents so to facilitate rendering of QR code in your web application later on.
 
-### Setting up TradeTrust Functions
+### Setting up TrustVC Functions
 
 Let's go through the steps:
 
 1. Sign up an account with [Netlify](https://app.netlify.com/signup).
 2. If you need document storage service, sign up an account with [AWS](https://aws.amazon.com/). Otherwise, this step **can be skipped**. Create an s3 bucket on AWS. Create access key ID and secret access key to access this resource. Take note of the bucket name, ID and secrets, we'll need them later.
-3. Fork tradetrust-functions [repo](https://github.com/TradeTrust/tradetrust-functions) on your github. Make sure to spin up a netlify site connected to the forked github repo.
+3. Fork tradetrust-functions [repo](https://github.com/TrustVC/trustvc-functions) on your github. Make sure to spin up a netlify site connected to the forked github repo.
 4. You should have a random site name allocated to your netlify site. You can edit site name to whichever name you want. For our example, we have renamed it to `tradetrust-functions.netlify.app`.
    ![tt functions](/docs/reference/tradetrust-website/tt-functions.png)
 5. Populate your environment variables on netlify site settings.
@@ -237,7 +237,7 @@ Let's go through the steps:
 
 ### Document Storage
 
-For our reference implementation of [document storage service](https://github.com/TradeTrust/tradetrust-functions#document-storage), it does the following:
+For our reference implementation of [document storage service](https://github.com/TrustVC/trustvc-functions#document-storage), it does the following:
 
 - [Encrypts](https://github.com/Open-Attestation/oa-encryption#encrypting-a-document) a document, returning the `key` among other fields.
 - Only neccessary fields are uploaded and stored in Amazon s3 bucket, without `key`.
@@ -255,7 +255,7 @@ For our reference implementation of [document storage service](https://github.co
 }
 ```
 
-- `key` 1a8d6... will be then be used to decrypt the document at `uri` with 95524... on TradeTrust web application end.
+- `key` 1a8d6... will be then be used to decrypt the document at `uri` with 95524... on TrustVC web application end.
 
 > Note that the `key` value is up to integrators on how it should be managed. Do note that the process of whether to encrypt your document is at your discretion.
 
