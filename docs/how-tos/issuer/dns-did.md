@@ -38,7 +38,7 @@ Decentralized identifiers (DIDs) are a new type of identifier that enables verif
 
 ## How it works
 
-When an individual entity creates an etheruem wallet, it is nothing more than a private / public key pair. The public key can be derived from a wallet address and hence the ethereum wallet address becomes the basis for the DID verification. When we use our private key to sign over `merkleRoot` of our TrustVC document, `proof.signature` is appended. This is the signature that will be verified against with later in [tt-verify](https://github.com/TrustVC/tt-verify) library. What happens at this end is the DID document will be resolved and retrieved, verify if the signed message hash equates back to etheruem wallet address, ensuring the document was indeed signed by it's private key. This way we know that it is "issued".
+When an individual entity creates an ethereum wallet, it is nothing more than a private / public key pair. The public key can be derived from a wallet address and hence the ethereum wallet address becomes the basis for the DID verification. When we use our private key to sign over `merkleRoot` of our TrustVC document, `proof.signature` is appended. This is the signature that will be verified against with later in [tt-verify](https://github.com/TrustVC/tt-verify) library. What happens at this end is the DID document will be resolved and retrieved, verify if the signed message hash equates back to ethereum wallet address, ensuring the document was indeed signed by it's private key. This way we know that it is "issued".
 
 Let's look at the `did:ethr` method:
 
