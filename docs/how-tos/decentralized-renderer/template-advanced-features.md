@@ -6,17 +6,17 @@ sidebar_label: Template Advanced Features
 
 # Template Advanced Features
 
-This guide explores advanced features for document preview templates in TradeTrust. These features enhance the functionality and user experience of your templates beyond basic rendering.
+This guide explores advanced features for document preview templates in TrustVC. These features enhance the functionality and user experience of your templates beyond basic rendering.
 
 ## Introduction
 
 Once you've created your basic document templates, you can enhance them with advanced features like multiple views, print-friendly formatting, and more. This guide demonstrates how to implement these features in your templates.
 
-Before proceeding with these examples, make sure you're familiar with the basics of [decentralized renderer](/docs/how-tos/decentralized-renderer/decentralized-renderer-guide.md) and understand the [generic templates](/docs/how-tos/decentralized-renderer/using-generic-templates) available in TradeTrust.
+Before proceeding with these examples, make sure you're familiar with the basics of [decentralized renderer](/docs/how-tos/decentralized-renderer/decentralized-renderer-guide.md) and understand the [generic templates](/docs/how-tos/decentralized-renderer/using-generic-templates) available in TrustVC.
 
 ## Advanced Features
 
-In many cases, you'll want to provide multiple views or formats for the same document. TradeTrust's decentralized renderer framework makes this easy to implement. Let's explore how to create multiple views for a document and add advanced features.
+In many cases, you'll want to provide multiple views or formats for the same document. TrustVC's decentralized renderer framework makes this easy to implement. Let's explore how to create multiple views for a document and add advanced features.
 
 ### Implementing Multiple Views
 
@@ -512,8 +512,8 @@ export const MultiLanguageTemplate = ({ document }) => {
 
 ## Conclusion
 
-Implementing advanced features in your TradeTrust document templates can significantly enhance the user experience and functionality of your documents. By leveraging multiple views, print-friendly formatting, conditional rendering, interactive elements, data visualization, QR codes, and internationalization, you can create rich, interactive document experiences that meet diverse user needs.
+Implementing advanced features in your TrustVC document templates can significantly enhance the user experience and functionality of your documents. By leveraging multiple views, print-friendly formatting, conditional rendering, interactive elements, data visualization, QR codes, and internationalization, you can create rich, interactive document experiences that meet diverse user needs.
 
 Remember that these advanced features should complement the core purpose of your document templates: to present document data clearly and accurately. Always prioritize readability and usability when implementing these features.
 
-For more information on TradeTrust's decentralized renderer framework, refer to the [decentralized renderer guide](/docs/how-tos/decentralized-renderer/decentralized-renderer-guide.md) and explore the [generic templates](/docs/how-tos/decentralized-renderer/using-generic-templates) available in TradeTrust.
+For more information on TrustVC's decentralized renderer framework, refer to the [decentralized renderer guide](/docs/how-tos/decentralized-renderer/decentralized-renderer-guide.md) and explore the [generic templates](/docs/how-tos/decentralized-renderer/using-generic-templates) available in TrustVC.

@@ -9,13 +9,13 @@ import Flow from "./flow.mdx";
 
 <Flow />
 
-Every TradeTrust document's provenance can be verified and traced back to its issuer. This is achieved by embedding an `identityProof` property in the document, which serves as a claim for identity. During the verification phase, the claim is checked against external records.
+Every TrustVC document's provenance can be verified and traced back to its issuer. This is achieved by embedding an `identityProof` property in the document, which serves as a claim for identity. During the verification phase, the claim is checked against external records.
 
 ![Example Issuer Identity](/docs/tutorial/verifiable-documents/ethereum/dns-proof/example.png)
 
 In this example above, the document's issuer is bound to `example.tradetrust.io`.
 
-In this guide, we will bind the document issuer's identity to a valid domain name. This domain will be displayed as issuer every time the document is rendered in any TradeTrust-compliant decentralized renderer.
+In this guide, we will bind the document issuer's identity to a valid domain name. This domain will be displayed as issuer every time the document is rendered in any TrustVC-compliant decentralized renderer.
 
 We will be inserting a temporary DNS record on our DNS at `sandbox.openattestation.com` so you do not need your own domain to follow the guide. If you prefer to use your own domain name for the identity, you may skip the steps involving the CLI and instead read the [DNS Configuration Guide](/docs/how-tos/issuer/dns-txt#hands-on-creating-a-dns-txt-record).
 

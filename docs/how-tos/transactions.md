@@ -15,9 +15,9 @@ A Title that can have its' Owner changed after issuance, is known as a **Negotia
 
 In the case where a **Negotiable Title** has its' Owner changed, this procedure is termed **Endorsement**. This change of ownership is only allowed by its' current Owner.
 
-### TradeTrust Contribution
+### TrustVC Contribution
 
-As previously documented under the Token Registry section, we can represent control of a TradeTrust document uniquely and singularly by registering its' hash with the Issuer's token registry. This hash is also known as a **Token ID**. This control will also be referred to as the **Token**.
+As previously documented under the Token Registry section, we can represent control of a TrustVC document uniquely and singularly by registering its' hash with the Issuer's token registry. This hash is also known as a **Token ID**. This control will also be referred to as the **Token**.
 
 However, as the ERC721 standard only specifies a single mode of ownership, it cannot represent the duality of physical possession and legal ownership.
 

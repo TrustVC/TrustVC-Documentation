@@ -5,10 +5,10 @@ sidebar_label: CORS Errors on External Resources
 keywords: ["cors", "cors error", "Access-Control-Allow-Origin", "cross-origin", "no-cors", "fetch blocked"]
 ---
 
-When using the web-based verifier such as [ref.tradetrust.io](https://ref.tradetrust.io), the browser will block requests to external resources that do not have Cross-Origin Resource Sharing (CORS) enabled.
+When using the web-based verifier such as [trustvc.io](https://trustvc.io), the browser will block requests to external resources that do not have Cross-Origin Resource Sharing (CORS) enabled.
 
 :::info
-This is not a bug in TradeTrust. It is a security feature of the browser that enforces access controls on the resources you host.
+This is not a bug in TrustVC. It is a security feature of the browser that enforces access controls on the resources you host.
 :::
 
 ## The Error
@@ -16,16 +16,16 @@ This is not a bug in TradeTrust. It is a security feature of the browser that en
 You will see this in your browser console (F12):
 
 ```text
-Access to fetch at 'https://your-domain.com/context.json' from origin 'https://ref.tradetrust.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+Access to fetch at 'https://your-domain.com/context.json' from origin 'https://trustvc.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 ```
 
 ## The Cause
 
-The TradeTrust verifier runs entirely in the client's browser. When it tries to read a JSON-LD context or a revocation list from your server (`your-domain.com`), the browser checks your server's headers.
+The TrustVC verifier runs entirely in the client's browser. When it tries to read a JSON-LD context or a revocation list from your server (`your-domain.com`), the browser checks your server's headers.
 
-If your server does not return the header `Access-Control-Allow-Origin: *` (or explicitly allow `https://ref.tradetrust.io`), the browser acts as a gatekeeper and blocks the data from reaching the verifier.
+If your server does not return the header `Access-Control-Allow-Origin: *` (or explicitly allow `https://trustvc.io`), the browser acts as a gatekeeper and blocks the data from reaching the verifier.
 
-## Common Triggers in TradeTrust
+## Common Triggers in TrustVC
 
 These are the resources you host that frequently cause this error.
 
