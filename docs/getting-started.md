@@ -145,7 +145,7 @@ The derived credential is independently verifiable -- the verifier does not need
 | Function | Description |
 |---|---|
 | `signW3C` | Sign a W3C Verifiable Credential (`ecdsa-sd-2023` or `bbs-2023`) |
-| `signOA` | Sign an OpenAttestation document (v2 or v3) |
+| `signOA` | Sign an OpenAttestation document (v2) |
 | `deriveW3C` | Derive a credential with selective disclosure from a signed W3C VC |
 | `verifyDocument` | Verify any signed document (W3C VC, OA VD, or OpenCert) |
 | `wrapOADocument` | Wrap a single OpenAttestation document |
