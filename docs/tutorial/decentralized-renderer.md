@@ -107,7 +107,7 @@ First, create a new folder for your template and define the data structure.
 
 ```ts
 import { v2, SignedVerifiableCredential } from "@trustvc/trustvc";
-// import { v3 } from "@trustvc/trustvc"; // OA v3 wrapping is no longer supported
+// import { v3 } from "@trustvc/trustvc"; // OA v3 is no longer supported
 import { CredentialSubject } from "@trustvc/trustvc/w3c/vc";
 
 export type BillOfLadingSchemaV2 = v2.OpenAttestationDocument &
@@ -856,7 +856,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BillOfLadingSample } from "../src/templates/BillOfLading/sample";
 import { TemplateASampleV2 } from "../src/templates/examples/TemplateA/sampleV2";
-// import { TemplateASampleV3 } from "../src/templates/examples/TemplateA/sampleV3"; // OA v3 wrapping is no longer supported
+// import { TemplateASampleV3 } from "../src/templates/examples/TemplateA/sampleV3"; // OA v3 is no longer supported
 import { App } from "./app";
 import "./main.css";
 

@@ -62,7 +62,7 @@ const attachments = vc.isSignedDocument(document)
       ?.map((s) => s.attachments)
       ?.filter(Boolean)
       ?.flat()
-  : isV2Document(document) || isV3Document(document)
+  : isV2Document(document)
     ? document.attachments
     : [];
 const tabsRenderedFromAttachments = (attachments || ([] as Attachment[]))

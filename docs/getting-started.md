@@ -7,7 +7,7 @@ title: Getting Started
 
 ## Introduction
 
-TrustVC (`@trustvc/trustvc`) is a comprehensive library for signing, verifying, and managing W3C Verifiable Credentials and OpenAttestation Verifiable Documents. It provides a unified API for credential issuance, selective disclosure, and multi-format verification.
+TrustVC (`@trustvc/trustvc`) is a comprehensive library for signing, verifying, and managing W3C Verifiable Credentials and OpenAttestation v2 Verifiable Documents. It provides a unified API for credential issuance, selective disclosure, and multi-format verification.
 
 ## Prerequisites
 
@@ -147,7 +147,7 @@ The derived credential is independently verifiable -- the verifier does not need
 | `signW3C` | Sign a W3C Verifiable Credential (`ecdsa-sd-2023` or `bbs-2023`) |
 | `signOA` | Sign an OpenAttestation document (v2) |
 | `deriveW3C` | Derive a credential with selective disclosure from a signed W3C VC |
-| `verifyDocument` | Verify any signed document (W3C VC, OA VD, or OpenCert) |
+| `verifyDocument` | Verify any signed document (W3C VC or OA v2 VD) |
 | `wrapOADocument` | Wrap a single OpenAttestation document |
 | `encrypt` / `decrypt` | Encrypt and decrypt data using ChaCha20 |
 | `DocumentBuilder` | Fluent API for building, signing, deriving, and verifying credentials |
