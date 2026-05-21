@@ -6,7 +6,7 @@ sidebar_label: Verify Document
 
 ## Overview
 
-The `verifyDocument` function is TrustVC's unified verification entry point. It accepts any signed document -- W3C Verifiable Credentials or OpenAttestation Verifiable Documents -- and returns an array of verification fragments describing the outcome.
+The `verifyDocument` function is TrustVC's unified verification entry point. It accepts any signed document -- W3C Verifiable Credentials or OpenAttestation v2 Verifiable Documents -- and returns an array of verification fragments describing the outcome.
 
 Verification answers three questions about a document:
 
@@ -27,7 +27,7 @@ console.log(fragments);
 // Array of verification fragments, one per check
 ```
 
-The function automatically detects the document format (W3C VC or OpenAttestation) and applies the correct set of verifiers.
+The function automatically detects the document format (W3C VC or OpenAttestation v2) and applies the correct set of verifiers.
 
 ## Understanding Verification Fragments
 
@@ -35,7 +35,7 @@ The function automatically detects the document format (W3C VC or OpenAttestatio
 
 ### DOCUMENT_INTEGRITY
 
-Validates that the document has not been modified after signing. For W3C VCs, this checks the `DataIntegrityProof` signature. For OpenAttestation documents, this verifies the Merkle root and document hash.
+Validates that the document has not been modified after signing. For W3C VCs, this checks the `DataIntegrityProof` signature. For OpenAttestation v2 documents, this verifies the Merkle root and document hash.
 
 ```ts
 const integrityFragment = fragments.find((f) => f.type === 'DOCUMENT_INTEGRITY');
@@ -44,7 +44,7 @@ console.log(integrityFragment.status); // "VALID" | "INVALID" | "SKIPPED" | "ERR
 
 ### DOCUMENT_STATUS
 
-Checks whether the credential has been revoked or suspended. For W3C VCs using `BitstringStatusListEntry`, this resolves the status list credential and checks the bit at the specified index. For OpenAttestation documents, this checks the on-chain document store or token registry.
+Checks whether the credential has been revoked or suspended. For W3C VCs using `BitstringStatusListEntry`, this resolves the status list credential and checks the bit at the specified index. For OpenAttestation v2 documents, this checks the on-chain document store or token registry.
 
 ```ts
 const statusFragment = fragments.find((f) => f.type === 'DOCUMENT_STATUS');
@@ -53,7 +53,7 @@ console.log(statusFragment.status);
 
 ### ISSUER_IDENTITY
 
-Verifies that the issuer's identity can be resolved and trusted. For W3C VCs, this resolves the issuer's DID document and confirms the signing key is listed. For OpenAttestation documents, this checks DNS-TXT records or DNS-DID identity proofs.
+Verifies that the issuer's identity can be resolved and trusted. For W3C VCs, this resolves the issuer's DID document and confirms the signing key is listed. For OpenAttestation v2 documents, this checks DNS-TXT records or DNS-DID identity proofs.
 
 ```ts
 const identityFragment = fragments.find((f) => f.type === 'ISSUER_IDENTITY');
@@ -107,7 +107,7 @@ for (const fragment of fragments) {
 
 ### rpcProviderUrl
 
-For documents that require on-chain verification (e.g., OpenAttestation documents using document stores or token registries), pass an Ethereum-compatible JSON-RPC provider URL:
+For documents that require on-chain verification (e.g., OpenAttestation v2 documents using document stores or token registries), pass an Ethereum-compatible JSON-RPC provider URL:
 
 ```ts
 const fragments = await verifyDocument(signedDocument, {
