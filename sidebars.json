@@ -52,6 +52,20 @@
           "how-tos/decentralized-renderer/template-advanced-features"
         ]
       },
+      {
+        "label": "Chain Events (ETR Webhook)",
+        "type": "category",
+        "items": [
+          "how-tos/chain-events/overview",
+          "how-tos/chain-events/quick-start",
+          "how-tos/chain-events/configuration",
+          "how-tos/chain-events/webhook-payload",
+          "how-tos/chain-events/registry-api",
+          "how-tos/chain-events/rate-limits",
+          "how-tos/chain-events/opentelemetry",
+          "how-tos/chain-events/scaling"
+        ]
+      },
       "how-tos/implementing-qr-codes",
       {
         "label": "OpenAttestation (Legacy)",

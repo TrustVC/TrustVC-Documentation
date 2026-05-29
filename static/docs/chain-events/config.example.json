@@ -1,0 +1,117 @@
+{
+  "chains": [
+    {
+      "chainKey": "ethereum-sepolia",
+      "rpcUrl": "wss://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_API_KEY",
+      "registryAddresses": [
+        "0xYourTokenRegistryAddress"
+      ],
+      "replayFromBlock": 6000000,
+      "replayBatchSize": 10000,
+      "replayDelayMs": 500,
+      "confirmations": 1
+    },
+    {
+      "chainKey": "ethereum",
+      "rpcUrl": "wss://eth-mainnet.g.alchemy.com/v2/YOUR_ALCHEMY_API_KEY",
+      "registryAddresses": [],
+      "replayFromBlock": 0,
+      "replayBatchSize": 10000,
+      "replayDelayMs": 500,
+      "confirmations": 3
+    },
+    {
+      "chainKey": "polygon",
+      "rpcUrl": "wss://polygon-mainnet.g.alchemy.com/v2/YOUR_ALCHEMY_API_KEY",
+      "registryAddresses": [],
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 500,
+      "confirmations": 2
+    },
+    {
+      "chainKey": "polygon-amoy",
+      "rpcUrl": "wss://polygon-amoy-bor-rpc.publicnode.com",
+      "registryAddresses": [],
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 500,
+      "confirmations": 1
+    },
+    {
+      "chainKey": "xdc",
+      "rpcUrl": "wss://rpc.xinfin.network/ws",
+      "registryAddresses": [],
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 0,
+      "confirmations": 1
+    },
+    {
+      "chainKey": "xdc-apothem",
+      "rpcUrl": "wss://rpc.apothem.network/ws",
+      "registryAddresses": [],
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 0,
+      "confirmations": 1
+    },
+    {
+      "chainKey": "stability",
+      "rpcUrl": "https://rpc.stabilityprotocol.com/zgt/YOUR_STABILITY_API_KEY",
+      "registryAddresses": [],
+      "pollIntervalMs": 10000,
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 5000,
+      "confirmations": 1
+    },
+    {
+      "chainKey": "stability-testnet",
+      "rpcUrl": "https://rpc.testnet.stabilityprotocol.com/zgt/YOUR_STABILITY_API_KEY",
+      "registryAddresses": [],
+      "pollIntervalMs": 10000,
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 5000,
+      "confirmations": 1
+    },
+    {
+      "chainKey": "astron",
+      "rpcUrl": "https://rpc.astron.network",
+      "registryAddresses": [],
+      "pollIntervalMs": 10000,
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 0,
+      "confirmations": 1
+    },
+    {
+      "chainKey": "astron-testnet",
+      "rpcUrl": "https://rpc.testnet.astron.network",
+      "registryAddresses": [],
+      "pollIntervalMs": 10000,
+      "replayFromBlock": 0,
+      "replayBatchSize": 5000,
+      "replayDelayMs": 0,
+      "confirmations": 1
+    }
+  ],
+  "webhook": {
+    "url": "https://your-system.example.com/trustvc/events",
+    "timeoutMs": 10000,
+    "retryAttempts": 3,
+    "retryBackoffMs": 1000,
+    "headers": {
+      "Authorization": "Bearer ${WEBHOOK_SECRET}"
+    },
+    "maxConcurrentDeliveries": 10,
+    "maxQueueSize": 10000
+  },
+  "server": {
+    "port": 8080,
+    "host": "0.0.0.0",
+    "workerProcesses": true,
+    "logLevel": "info"
+  }
+}
