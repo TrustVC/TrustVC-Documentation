@@ -101,10 +101,6 @@ Check logs for these patterns:
 
 Enable debug logging to see each batch request:
 
-```bash
-# In config.json
-{ "logLevel": "debug" }
-```
 
 ---
 
