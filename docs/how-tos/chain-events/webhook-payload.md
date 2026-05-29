@@ -13,7 +13,7 @@ Every event is delivered as an HTTP `POST` to your configured `webhook.url`.
 
 ## Request Format
 
-```
+```text
 POST /your-endpoint
 Content-Type: application/json
 X-TrustVC-Signature: ed25519=<base64url-signature>
@@ -104,7 +104,7 @@ Use `data.transactionHash + data.logIndex` as your idempotency key — this comb
 
 Every request includes an `X-TrustVC-Signature` header:
 
-```
+```text
 X-TrustVC-Signature: ed25519=<base64url-signature>
 ```
 

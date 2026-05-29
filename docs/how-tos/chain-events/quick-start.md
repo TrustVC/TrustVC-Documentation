@@ -148,7 +148,7 @@ docker logs trustvc-events
 
 You should see output similar to:
 
-```
+```text
 INFO [startup]: trustvc-webhook-events starting  version: "0.1.0"
 INFO [startup]: Database connected
 INFO [startup]: Chain worker ready  chain: "ethereum-sepolia"  escrows: 22
