@@ -28,7 +28,7 @@ The following config fields let you tune replay speed to stay within your RPC's 
 
 On startup the container scans from `replayFromBlock` to the current block in chunks of `replayBatchSize`:
 
-```
+```text
 Block 6,000,000 ──► [batch 1: 6,000,000 – 6,002,000] ──wait replayDelayMs──►
                     [batch 2: 6,002,000 – 6,004,000] ──wait replayDelayMs──►
                     ...
