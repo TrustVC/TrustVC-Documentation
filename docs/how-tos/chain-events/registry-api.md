@@ -130,7 +130,7 @@ docker run -d \
   -v $(pwd)/config.json:/app/config.json:ro \
   --env-file .env \
   -p 8080:8080 \
-  ghcr.io/trustvc/trustvc-chain-events:latest
+  trustvc/trustvc-chain-events:latest
 ```
 
 **Step 2 — Deploy your Token Registry**

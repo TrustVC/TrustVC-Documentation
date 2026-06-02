@@ -55,7 +55,7 @@ If the active instance crashes or loses its lease, another instance picks it up 
 ```yaml
 services:
   trustvc-events:
-    image: ghcr.io/trustvc/trustvc-chain-events:latest
+    image: trustvc/trustvc-chain-events:latest
     deploy:
       replicas: 2
     ports:
@@ -107,7 +107,7 @@ For production deployments on AWS, run the container as a Fargate service. The t
   "containerDefinitions": [
     {
       "name": "trustvc-chain-events",
-      "image": "ghcr.io/trustvc/trustvc-chain-events:latest",
+      "image": "trustvc/trustvc-chain-events:latest",
       "portMappings": [
         { "containerPort": 8080, "protocol": "tcp" }
       ],
