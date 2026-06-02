@@ -25,6 +25,19 @@ By default, each chain runs in its own child process (`workerProcesses: true` in
 
 ## Horizontal Scaling
 
+:::warning A database is required for scaling and HA
+
+Running more than one replica **without a database will cause duplicate events** — every replica polls the chain independently, so your webhook endpoint receives multiple copies of the same event.
+
+The database solves this in two ways:
+
+- **One replica owns each chain at a time** — replicas compete for a lease stored in the database. Only the winner polls; the others wait on standby.
+- **Progress survives restarts** — the last processed block is persisted, so a restarting replica resumes exactly where it left off instead of replaying from scratch.
+
+**Set `DB_HOST` before running more than one container.**
+
+:::
+
 To run multiple instances of the container in parallel — for redundancy or higher throughput — you must connect a database. The container uses a **distributed lease** mechanism (one active worker per chain at a time) to prevent duplicate event delivery when multiple instances are running.
 
 ```bash
