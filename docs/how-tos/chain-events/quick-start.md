@@ -13,6 +13,14 @@ Get `trustvc-chain-events` running locally in under 5 minutes.
 
 ## Step 1 — Pull the Image
 
+**Docker Hub (recommended)**
+
+```bash
+docker pull trustvc/trustvc-chain-events:latest
+```
+
+**GitHub Container Registry (alternative)**
+
 ```bash
 docker pull ghcr.io/trustvc/trustvc-chain-events:latest
 ```
@@ -106,7 +114,7 @@ docker run -d \
   --env-file .env \
   -p 8080:8080 \
   --name trustvc-events \
-  ghcr.io/trustvc/trustvc-chain-events:latest
+  trustvc/trustvc-chain-events:latest
 ```
 
 **With Docker Compose**
@@ -114,7 +122,7 @@ docker run -d \
 ```yaml title="docker-compose.yml"
 services:
   trustvc-events:
-    image: ghcr.io/trustvc/trustvc-chain-events:latest
+    image: trustvc/trustvc-chain-events:latest
     ports:
       - "8080:8080"
     volumes:

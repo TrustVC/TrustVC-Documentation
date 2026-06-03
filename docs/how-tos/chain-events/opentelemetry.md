@@ -21,7 +21,12 @@ Add these to your `.env`:
 OTEL_ENABLED=true
 OTEL_SERVICE_NAME=trustvc-chain-events
 OTEL_EXPORTER_OTLP_ENDPOINT=https://your-otlp-endpoint
-OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=explicit_bucket_histogram
+```
+
+### Optional Variables
+
+| Variable | Default | Description |
+|---|---|---|
 | `OTEL_EXPORTER_OTLP_HEADERS` | — | Auth headers required by your backend (see examples below) |
 | `OTEL_INSTANCE_ID` | `<hostname>-<pid>` | Custom instance identifier shown in metrics labels |
 | `OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION` | — | Set to `explicit_bucket_histogram` for Prometheus-compatible histograms |
