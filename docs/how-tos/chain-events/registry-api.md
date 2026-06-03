@@ -9,7 +9,7 @@ sidebar_position: 5
 
 The container exposes a REST API on port `8080` that lets you add and remove Token Registry contracts at runtime — without restarting the container or editing `config.json`.
 
-:::note Database required
+:::warning Database required
 All registry management endpoints require `DB_HOST` to be configured. They return `503 Service Unavailable` if no database is connected. Registries added via the API are persisted to the database and survive container restarts.
 :::
 
