@@ -40,7 +40,7 @@ Have a better understanding about our different document types: [verifiable docu
 
 ## Hands-on Creating a DNS-TXT Record
 
-Before we start creating the DNS-TXT records, please take note that this method **requires** ethers/matic (cryptocurrency) to begin.
+Before we start creating the DNS-TXT records, please take note that this method **requires** ethers/POL (cryptocurrency) to begin.
 Also, please make sure you have completed the prerequisites listed below.
 
 ### Prerequisites

@@ -161,7 +161,7 @@ TrustVC supports on-chain verification across the following networks:
 | Network | Code | Chain ID |
 |---|---|---|
 | Ethereum | ETH | 1 |
-| Polygon | MATIC | 137 |
+| Polygon | POL | 137 |
 | XDC | XDC | 50 |
 | Stability | FREE | 101010 |
 | Astron | ASTRON | 1338 |

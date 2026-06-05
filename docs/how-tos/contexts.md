@@ -188,7 +188,7 @@ For detailed instructions on fixing CORS errors, see the [CORS Errors guide](/do
 ####  **Field Details**
 - **`type`**: Defines the status type (TransferableRecords).
 - **`tokenNetwork`**: Specifies the blockchain details:
-- **`chain`**: Blockchain network name (e.g., MATIC).
+- **`chain`**: Blockchain network name (e.g., POL for Polygon mainnet, MATIC for Amoy testnet).
 - **`chainId`**: Blockchain ID (e.g., 80002 for Amoy network).
 - **`tokenRegistry`**: Address of the token registry contract.
 
