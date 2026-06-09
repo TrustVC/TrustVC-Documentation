@@ -171,7 +171,7 @@ TrustVC supports on-chain verification across the following networks:
 | Network | Code | Chain ID |
 |---|---|---|
 | Sepolia (Ethereum) | ETH | 11155111 |
-| Amoy (Polygon) | MATIC | 80002 |
+| Amoy (Polygon) | POL | 80002 |
 | XDC Apothem | XDC | 51 |
 | Stability Testnet | FREE | 20180427 |
 | Astron Testnet | ASTRON | 21002 |
