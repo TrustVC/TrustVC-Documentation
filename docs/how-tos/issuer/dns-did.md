@@ -97,7 +97,7 @@ Example of a DNS-DID signed document:
 
 ## Hands-on Creating a DNS-DID
 
-Before we start creating the DNS-DID, please take note that this method **does not require** any ethers/matic (cryptocurrency) to begin. Which means if you use this method, your verifiable document that you will generate will be free!
+Before we start creating the DNS-DID, please take note that this method **does not require** any ethers/POL (cryptocurrency) to begin. Which means if you use this method, your verifiable document that you will generate will be free!
 Also, please make sure you have completed the prerequisites listed below.
 
 ### Prerequisites
