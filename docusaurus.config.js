@@ -73,6 +73,13 @@ const siteConfig = {
     prism: {
       theme: require("prism-react-renderer").themes.nightOwl,
     },
+    algolia: {
+      appId: "9YD4C4VNNU",
+      apiKey: "b7b1693397a49e6bb25b6f7fe0f4a8b3",
+      indexName: "trustvc",
+      contextualSearch: false,
+      searchPagePath: "search",
+    },
   },
 };
 
