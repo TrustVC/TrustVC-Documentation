@@ -44,6 +44,16 @@
         ]
       },
       {
+        "label": "Obligation Registry (BoE)",
+        "type": "category",
+        "items": [
+          "how-tos/obligation-registry/overview",
+          "how-tos/obligation-registry/deployment",
+          "how-tos/obligation-registry/transactions",
+          "how-tos/obligation-registry/fetch-endorsement-chain"
+        ]
+      },
+      {
         "label": "Decentralized Renderer",
         "type": "category",
         "items": [
