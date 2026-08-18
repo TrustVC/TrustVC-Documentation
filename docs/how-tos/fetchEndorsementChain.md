@@ -92,7 +92,7 @@ try {
 
 ### Using the CLI
 
-For Obligation Registry titles, the `trustvc` CLI also wraps this lookup as a read-only command (requires `@trustvc/trustvc-cli@1.3.0-beta.3` or later):
+For Obligation Registry titles, the `trustvc` CLI also wraps this lookup as a read-only command (requires `@trustvc/trustvc-cli@1.3.0-beta.4` or later — `endorsement-chain` was not included in `1.3.0-beta.3`):
 
 ```bash
 # Full history — transfers and status events
