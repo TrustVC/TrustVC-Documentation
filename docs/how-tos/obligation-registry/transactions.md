@@ -4,7 +4,7 @@ title: Perform Transactions
 sidebar_label: Perform Transactions
 ---
 
-### Background
+## Background
 
 A Bill of Exchange is a written, unconditional order by one party (the **drawer**) directing another party (the **drawee**) to pay a fixed sum to a payee, either on demand or at a future date. Once the drawee agrees to honour the bill, they are said to have **accepted** it — from that point they are obligated to pay it. If they refuse, they **reject** it. Once the payee has actually been paid, the bill is **discharged**.
 
@@ -68,8 +68,12 @@ To use the package, you will need to provide your own Web3 [provider](https://do
 
 Minting sets the document's status to **Issued** and creates its `ObligationEscrow`, the same way minting creates a Title Escrow for classic ETR.
 
+`encryptionKeyId` is whatever key you use to encrypt this remark -- it must be the exact same value later passed as `keyId` to [`fetchEndorsementChain`](/docs/how-tos/fetch-endorsement-chain), or the remark won't decrypt. The `trustvc` CLI always uses the signed document's own `id` for this (see [Fetch Endorsement Chain](/docs/how-tos/fetch-endorsement-chain) for the read side), which is why we set it that way below; calling the SDK directly, you can use any string as long as every write and read for this document use the same one.
+
 ```ts
 import { mintObligationRegistry } from "@trustvc/trustvc";
+
+const encryptionKeyId = signedDocument.id; // matches the convention used by the CLI and by fetchEndorsementChain
 
 await (
   await mintObligationRegistry(
@@ -85,6 +89,8 @@ await (
 
 ```ts
 import { acceptObligationRegistry, rejectObligationRegistry } from "@trustvc/trustvc";
+
+// encryptionKeyId here must be the same value used at mint (see above)
 
 // Holder accepts — Issued → Accepted
 await (
@@ -113,6 +119,7 @@ await (
 import { dischargeObligationRegistry } from "@trustvc/trustvc";
 
 // Beneficiary discharges — Accepted → Discharged (auto-closes and burns)
+// encryptionKeyId here must be the same value used at mint (see above)
 await (
   await dischargeObligationRegistry(
     { obligationRegistryAddress, tokenId: "1" },
@@ -166,6 +173,7 @@ import {
 } from "@trustvc/trustvc";
 
 // Dual role (beneficiary == holder) returns the title to the registry
+// encryptionKeyId here must be the same value used at mint (see above)
 await returnToIssuerObligationRegistry(
   { obligationRegistryAddress, tokenId: "1" },
   dualRoleSigner,

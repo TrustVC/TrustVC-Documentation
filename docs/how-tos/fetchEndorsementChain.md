@@ -15,7 +15,7 @@ This function retrieves the endorsement chain of a token by fetching its transfe
 | tokenRegistry    | string   | The address of the Token Registry contract.                 |
 | tokenId          | string   | The unique identifier of the token.                         |
 | provider         | Provider | A blockchain provider to interact with the smart contracts. |
-| keyId (optional) | string   | The key used for decrypting remarks in V5 contracts.        |
+| keyId (optional) | string   | The key used for decrypting remarks (V5 Title Escrow or Obligation Escrow) — must match the key used to encrypt the remark at write time. |
 
 ### Returns:
 
@@ -90,12 +90,29 @@ try {
 }
 ```
 
+### Using the CLI
+
+For Obligation Registry titles, the `trustvc` CLI also wraps this lookup as a read-only command (requires `@trustvc/trustvc-cli@1.3.0-beta.3` or later):
+
+```bash
+# Full history — transfers and status events
+trustvc obligation-escrow endorsement-chain
+
+# A single, current snapshot instead of the full history
+trustvc obligation-escrow status
+```
+
+Both commands are **read-only** — no wallet or private key is requested. They extract the network, `obligationRegistry` address, and token ID from the document you point them at, and decrypt remarks using the document's `id`.
+
+`trustvc obligation-escrow status` output includes the current `status` (`Issued` / `Accepted` / `Rejected` / `Discharged`), whether the title is registered, the termination reason (if the title has been closed), and the escrow's beneficiary/holder/nominee.
+
 ### Error Handling
 
 - Throws "Missing required dependencies" if any required parameter is missing.
-- Throws "Only Token Registry V4/V5 is supported" if the token registry version is not recognized.
+- Throws if the registry address and token ID can't be resolved to an escrow contract at all (e.g. a wrong registry address, or a token ID that was never minted there).
+- Throws "Only Token Registry V4/V5 or Obligation Registry is supported" if the resolved escrow contract doesn't implement Title Escrow V4/V5 or Obligation Escrow.
 
-This function ensures compatibility with both V4 and V5 registries while handling encrypted remarks in V5.
+This function ensures compatibility with V4/V5 Title Escrow and Obligation Escrow, while handling encrypted remarks on both.
 
 ### Classic ETR vs. Obligation ETR (Bill of Exchange)
 
