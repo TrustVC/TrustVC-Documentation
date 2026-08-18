@@ -10,6 +10,8 @@ The Obligation Registry contract (`TrustVCToken`) is deployed together with its 
 
 ### Installing TrustVC CLI
 
+> **Version note**: The `obligation-registry` / `obligation-escrow` commands used on this page require `@trustvc/trustvc-cli@1.3.0-beta.3` or later -- they have not shipped in a stable release yet, so plain `npm install -g @trustvc/trustvc-cli` (which resolves to the latest stable version) will **not** include them. Install from the `beta` dist-tag, or pin the version explicitly, as shown below.
+
 #### Binary
 
 To install the binary, simply download the binary from the [CLI release page](https://github.com/TrustVC/trustvc-cli/releases) for your OS.
@@ -19,7 +21,9 @@ To install the binary, simply download the binary from the [CLI release page](ht
 For Linux or MacOS users, if you have npm installed on your machine, you may install the CLI using the following command:
 
 ```bash
-npm install -g @trustvc/trustvc-cli
+npm install -g @trustvc/trustvc-cli@1.3.0-beta.3
+# or, to track the latest beta:
+npm install -g @trustvc/trustvc-cli@beta
 ```
 
 The above command will install the TrustVC CLI to your machine. You will need to have node.js installed to be able to run the command.
@@ -27,7 +31,7 @@ The above command will install the TrustVC CLI to your machine. You will need to
 You can also opt to use npx:
 
 ```bash
-npx @trustvc/trustvc-cli <arguments>
+npx @trustvc/trustvc-cli@1.3.0-beta.3 <arguments>
 ```
 
 ### Deploying via CLI
@@ -75,7 +79,7 @@ const { obligationRegistry, obligationEscrowFactoryAddress } = await deployOblig
 );
 ```
 
-If you'd rather deploy — or reuse — the two contracts yourself (for example, to share one `ObligationEscrowFactory` across multiple registries), deploy them directly:
+If you'd rather deploy — or reuse — the two contracts yourself (for example, to share one `ObligationEscrowFactory` across multiple registries), deploy them directly. Unlike the SDK convenience function above (which works with any ethers v5/v6 provider or signer), this snippet uses Hardhat's `ethers` re-export and needs to run inside a Hardhat project configured with the ethers v6 plugin (`@nomicfoundation/hardhat-ethers`) -- e.g. the token-registry contracts repo itself, not a plain Node script:
 
 ```ts
 import { ethers } from "hardhat";

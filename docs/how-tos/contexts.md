@@ -261,7 +261,7 @@ This setup provides a straightforward way to include additional data as part of 
 }
 ```
 
-####  **Field Details**
+#### **Field Details**
 - **`type`**: Still `TransferableRecords` -- the same credentialStatus type as classic ETR.
 - **`tokenNetwork`**: Same blockchain network details as classic ETR (`chain`, `chainId`).
 - **`obligationRegistry`**: Address of the Obligation Registry contract, used in place of `tokenRegistry` for Obligation Registry / Bill of Exchange documents.

@@ -25,6 +25,8 @@ A Promise `<EndorsementChain>` that resolves to an array of events representing 
 
 ### Example Usage
 
+The `keyId` below must match whatever key was passed as `id` when the remark was encrypted (e.g. at mint time) -- it isn't an arbitrary string you can pick freely at read time. The convention used throughout these docs, shown in the next example, is to use the document's own `id` as this key.
+
 ```typescript
 import { fetchEndorsementChain } from "@trustvc/trustvc";
 
@@ -32,7 +34,7 @@ const endorsementChain = await fetchEndorsementChain(
   "0x123456...", // Obligation Registry address
   "0x12345", // Token ID
   provider, // Web3 Provider
-  "my-decryption-key", // Optional decryption key for remarks
+  "my-decryption-key", // Must match the key used to encrypt remarks -- see note above
 );
 console.log(endorsementChain);
 ```
@@ -63,6 +65,8 @@ try {
 
 If you don't want to call the SDK function directly, the CLI wraps the same lookup:
 
+> **Version note**: These commands require `@trustvc/trustvc-cli@1.3.0-beta.3` or later -- see [Deployment](./deployment#installing-trustvc-cli) for installation.
+
 ```bash
 # Full history — transfers and status events
 trustvc obligation-escrow endorsement-chain
@@ -78,4 +82,5 @@ Both commands are **read-only** — no wallet or private key is requested. They 
 ### Error Handling
 
 - Throws if `tokenRegistry`, `tokenId`, or `provider` is missing.
-- Throws if the address is not a recognized Title Escrow (V4/V5) or Obligation Escrow — double-check you're passing the Obligation Registry address, not a classic Token Registry address.
+- Throws if the registry address and token ID can't be resolved to an escrow contract at all (e.g. a wrong registry address, or a token ID that was never minted there).
+- Throws `Only Token Registry V4/V5 or Obligation Registry is supported` if the resolved escrow contract doesn't implement Title Escrow V4/V5 or Obligation Escrow — double-check you're passing the Obligation Registry address, not a classic Token Registry address.

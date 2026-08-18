@@ -140,7 +140,7 @@ For a Bill of Exchange VC, pass `credentialStatus.obligationRegistry` (not `toke
 ]
 ```
 
-**Obligation ETR** -- a Bill of Exchange minted, accepted by the holder, then discharged once paid (illustrative example built from the SDK's type contract -- not a captured live-chain response):
+**Obligation ETR** -- a Bill of Exchange minted, accepted by the holder, then discharged once paid (illustrative example built from the SDK's type contract -- not a captured live-chain response). Note the last two rows share the same transaction: `discharge()` emits both `StatusDischarged` and the closing `Shred` event in one call, so they carry the same `blockNumber`/`transactionHash`, and the `RETURN_TO_ISSUER_ACCEPTED` row's `owner`/`holder` are the beneficiary/holder at the moment of closure, not the zero address:
 
 ```json
 [
@@ -176,13 +176,13 @@ For a Bill of Exchange VC, pass `credentialStatus.obligationRegistry` (not `toke
   },
   {
     "type": "RETURN_TO_ISSUER_ACCEPTED",
-    "transactionHash": "0xcf6968ef91efe74b8ada1770fc31e811f15989f80b0d518a42e06d4ab5bac8bd",
-    "transactionIndex": 3,
-    "blockNumber": 6242791,
-    "owner": "0x0000000000000000000000000000000000000000",
-    "holder": "0x0000000000000000000000000000000000000000",
+    "transactionHash": "0xff88591234567890abcdef1234567890abcdef1234567890abcdef1234657135",
+    "transactionIndex": 1,
+    "blockNumber": 6202088,
+    "owner": "0xCA93690Bb57EEaB273c796a9309246BC0FB93649",
+    "holder": "0xd3DD1234567890abcdef1234567890abcdef4749",
     "remark": "",
-    "timestamp": 1713958422000,
+    "timestamp": 1713867129000,
     "terminationReason": "Discharged"
   }
 ]
