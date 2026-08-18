@@ -305,6 +305,22 @@ export const createW3CDocument = async () => {
 
 > **Important**: For bitstring revocation, you must host a valid StatusList2021 credential at the specified URL. Using placeholder URLs like `https://example.com` will cause verification errors. Follow the [Bitstring Status List guide](/docs/how-tos/bitstring) to set up proper hosting.
 
+> **Building a Bill of Exchange (Obligation Registry) document instead?** Swap the `@context` and `credentialStatus` for the obligation equivalents:
+> ```json
+> "@context": [
+>   "https://trustvc.io/context/bill-of-exchange.json",
+>   "https://trustvc.io/context/obligation-records-context.json"
+> ]
+> ```
+> ```json
+> "credentialStatus": {
+>   "type": "TransferableRecords",
+>   "tokenNetwork": { "chain": "Sepolia", "chainId": 11155111 },
+>   "obligationRegistry": "<your_obligation_registry_address>"
+> }
+> ```
+> See the [Obligation Registry overview](/docs/how-tos/obligation-registry/overview) for details.
+
 ### 5. Signing the Document
 
 Next, we need to sign our document to create a verifiable credential. We do this by calling the `sign` method on our DocumentBuilder instance and passing the DID key pair. Once signed, the document will include a **proof object** that contains cryptographic evidence of the document's authenticity.

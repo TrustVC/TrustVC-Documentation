@@ -96,3 +96,94 @@ try {
 - Throws "Only Token Registry V4/V5 is supported" if the token registry version is not recognized.
 
 This function ensures compatibility with both V4 and V5 registries while handling encrypted remarks in V5.
+
+### Classic ETR vs. Obligation ETR (Bill of Exchange)
+
+`fetchEndorsementChain` is the **same function** for both -- it auto-detects whether the title's escrow is a classic `TitleEscrow` (V4/V5) or an `ObligationEscrow`, and returns the right kind of history either way. There is no separate "obligation" version to call.
+
+Every entry in the returned chain shares the same shape (`type`, `transactionHash`, `transactionIndex`, `blockNumber`, `owner`, `holder`, `timestamp`, `remark`, and an optional `terminationReason`) -- what differs is which `type` values can appear:
+
+| | Classic ETR (Title Escrow) | Obligation ETR (ObligationEscrow) |
+| --- | --- | --- |
+| Custody events | `INITIAL`, `TRANSFER_BENEFICIARY`, `TRANSFER_HOLDER`, `TRANSFER_OWNERS`, `REJECT_TRANSFER_*` (V5) | Same custody events, unchanged |
+| Return/surrender | `SURRENDERED` / `RETURNED_TO_ISSUER`, `SURRENDER_ACCEPTED` / `RETURN_TO_ISSUER_ACCEPTED`, `SURRENDER_REJECTED` / `RETURN_TO_ISSUER_REJECTED` | Same, plus a `terminationReason` (`ReturnToIssuer`, `Rejected`, or `Discharged`) on the closing row |
+| Status events | Not applicable | `STATUS_ACCEPTED`, `STATUS_REJECTED`, `STATUS_DISCHARGED` (the mint's `StatusInitialized` event is merged into the `INITIAL` row, so it does not appear as a separate entry) |
+
+For a Bill of Exchange VC, pass `credentialStatus.obligationRegistry` (not `tokenRegistry`) as the registry address -- everything else about the call is identical.
+
+### Example Response
+
+**Classic ETR** -- a document minted and then surrendered/returned to the issuer:
+
+```json
+[
+  {
+    "type": "INITIAL",
+    "transactionHash": "0x2d98ae3908f0edd095a871a0c56dd3c0e1cfd657b53f28f7c01b1cb83bebc28b",
+    "transactionIndex": 5,
+    "blockNumber": 6162747,
+    "owner": "0xCA93690Bb57EEaB273c796a9309246BC0FB93649",
+    "holder": "0xCA93690Bb57EEaB273c796a9309246BC0FB93649",
+    "remark": "",
+    "timestamp": 1713778879000
+  },
+  {
+    "type": "SURRENDER_ACCEPTED",
+    "transactionHash": "0xcf6968ef91efe74b8ada1770fc31e811f15989f80b0d518a42e06d4ab5bac8bd",
+    "transactionIndex": 3,
+    "blockNumber": 6242791,
+    "owner": "0x0000000000000000000000000000000000000000",
+    "holder": "0x0000000000000000000000000000000000000000",
+    "remark": "",
+    "timestamp": 1713958422000
+  }
+]
+```
+
+**Obligation ETR** -- a Bill of Exchange minted, accepted by the holder, then discharged once paid (illustrative example built from the SDK's type contract -- not a captured live-chain response):
+
+```json
+[
+  {
+    "type": "INITIAL",
+    "transactionHash": "0x2d98ae3908f0edd095a871a0c56dd3c0e1cfd657b53f28f7c01b1cb83bebc28b",
+    "transactionIndex": 5,
+    "blockNumber": 6162747,
+    "owner": "0xCA93690Bb57EEaB273c796a9309246BC0FB93649",
+    "holder": "0xCA93690Bb57EEaB273c796a9309246BC0FB93649",
+    "remark": "issued",
+    "timestamp": 1713778879000
+  },
+  {
+    "type": "STATUS_ACCEPTED",
+    "transactionHash": "0xd6438cf1a2b3c4d5e6f7890abcdef1234567890abcdef1234567890abccc9360",
+    "transactionIndex": 1,
+    "blockNumber": 6172000,
+    "owner": "0xCA93690Bb57EEaB273c796a9309246BC0FB93649",
+    "holder": "0xd3DD1234567890abcdef1234567890abcdef4749",
+    "remark": "accepted",
+    "timestamp": 1713782103000
+  },
+  {
+    "type": "STATUS_DISCHARGED",
+    "transactionHash": "0xff88591234567890abcdef1234567890abcdef1234567890abcdef1234657135",
+    "transactionIndex": 1,
+    "blockNumber": 6202088,
+    "owner": "0xCA93690Bb57EEaB273c796a9309246BC0FB93649",
+    "holder": "0xd3DD1234567890abcdef1234567890abcdef4749",
+    "remark": "paid in full",
+    "timestamp": 1713867129000
+  },
+  {
+    "type": "RETURN_TO_ISSUER_ACCEPTED",
+    "transactionHash": "0xcf6968ef91efe74b8ada1770fc31e811f15989f80b0d518a42e06d4ab5bac8bd",
+    "transactionIndex": 3,
+    "blockNumber": 6242791,
+    "owner": "0x0000000000000000000000000000000000000000",
+    "holder": "0x0000000000000000000000000000000000000000",
+    "remark": "",
+    "timestamp": 1713958422000,
+    "terminationReason": "Discharged"
+  }
+]
+```

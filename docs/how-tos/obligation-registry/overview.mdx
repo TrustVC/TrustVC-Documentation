@@ -64,9 +64,3 @@ A document moves through the lifecycle above from the moment it's minted (`statu
 Everything else — deploying, minting, endorsing, reading the endorsement chain — works the same way you already know from Token Registry / Title Escrow. The next pages walk through each of these for the Obligation Registry specifically.
 
 > Obligation Registry is **v5-only** — there is no v4 equivalent, and classic `token-registry` / `title-escrow` commands should not be used for obligation documents (they'll fail extraction, since obligation documents carry `credentialStatus.obligationRegistry` instead of `credentialStatus.tokenRegistry`).
-
-## Next Steps
-
-1. [Deployment](./deployment) — deploy your Obligation Registry via CLI or code
-2. [Perform Transactions](./transactions) — mint, accept, reject, discharge, transfer, and return to issuer
-3. [Fetch Endorsement Chain](./fetch-endorsement-chain) — read a document's full on-chain history, including status changes

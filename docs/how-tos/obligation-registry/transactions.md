@@ -191,12 +191,6 @@ const status = await getObligationRegistryStatus({ obligationRegistryAddress, to
 
 ### Installation
 
-> **⚠️ DISCLAIMER**
->
-> The TrustVC CLI helps developers prototype and test how document issuance and verification work before integrating the TrustVC core into their own systems.
->
-> It should not be used for production issuance or live document management, as it lacks security, scalability, and operational controls required for real-world environments.
-
 ```bash
 npm install -g @trustvc/trustvc-cli
 ```

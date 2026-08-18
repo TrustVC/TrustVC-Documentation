@@ -8,15 +8,7 @@ sidebar_label: Deployment
 
 The Obligation Registry contract (`TrustVCToken`) is deployed together with its own `ObligationEscrowFactory` — the same two-contract pattern as a standalone Token Registry deployment, but using the obligation contracts instead of the classic ETR ones.
 
-> Obligation Registry is **v5-only** — there is no v4 equivalent. Use the classic `trustvc deploy token-registry` command for eBL / ETR documents; use the commands on this page only for Bill of Exchange / obligation documents.
-
 ### Installing TrustVC CLI
-
-> **⚠️ DISCLAIMER**
->
-> The TrustVC CLI helps developers prototype and test how document issuance and verification work before integrating the TrustVC core into their own systems.
->
-> It should not be used for production issuance or live document management, as it lacks security, scalability, and operational controls required for real-world environments.
 
 #### Binary
 
@@ -98,9 +90,3 @@ await token.waitForDeployment();
 ```
 
 The deployer becomes the default admin — the same role model as `TradeTrustToken`.
-
-:::note
-The Obligation Registry is **not upgradeable**, same as classic ETR. New behavior ships as a new contract deployment, not an upgrade to an existing one.
-:::
-
-Next, head to [Perform Transactions](./transactions) to mint your first Bill of Exchange document.
