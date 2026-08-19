@@ -38,8 +38,20 @@
         "label": "Transferable Records",
         "type": "category",
         "items": [
-          "how-tos/deployment",
-          "how-tos/transactions",
+          {
+            "label": "Classic ETR",
+            "type": "category",
+            "items": ["how-tos/deployment", "how-tos/transactions"]
+          },
+          {
+            "label": "Obligation ETR",
+            "type": "category",
+            "items": [
+              "how-tos/obligation-registry/overview",
+              "how-tos/obligation-registry/deployment",
+              "how-tos/obligation-registry/transactions"
+            ]
+          },
           "how-tos/fetch-endorsement-chain"
         ]
       },

@@ -46,9 +46,12 @@ console.log(integrityFragment.status); // "VALID" | "INVALID" | "SKIPPED" | "ERR
 
 Checks whether the credential has been revoked or suspended. For W3C VCs using `BitstringStatusListEntry`, this resolves the status list credential and checks the bit at the specified index. For OpenAttestation v2 documents, this checks the on-chain document store or token registry.
 
+For W3C VCs backed by an on-chain transferable record, `verifyDocument` auto-detects whether `credentialStatus` points at a classic Token Registry (`tokenRegistry`) or an Obligation Registry / Bill of Exchange (`obligationRegistry`) and runs the matching check. Both report as `DOCUMENT_STATUS`, but the fragment `name` differs -- `TransferableRecords` for classic ETR, `ObligationRecords` for BoE -- and the returned `data` carries `tokenRegistry` or `obligationRegistry` respectively. Both checks use the same "minted" semantics (the token's owner is not the zero address), so a BoE document that has been rejected or discharged -- which burns it to a dead address, not the zero address -- still reports `VALID` here, same as a surrendered classic ETR document.
+
 ```ts
 const statusFragment = fragments.find((f) => f.type === 'DOCUMENT_STATUS');
 console.log(statusFragment.status);
+console.log(statusFragment.name); // "TransferableRecords" | "ObligationRecords" | ...
 ```
 
 ### ISSUER_IDENTITY
@@ -118,6 +121,7 @@ const fragments = await verifyDocument(signedDocument, {
 This is required when:
 - The document uses an on-chain document store for issuance status
 - The document uses a token registry for transferable records
+- The document uses an Obligation Registry for Bill of Exchange / obligation records
 
 For W3C VCs that use off-chain status lists (e.g., `BitstringStatusListEntry`), the RPC provider URL is not required.
 
@@ -132,3 +136,4 @@ For W3C VCs that use off-chain status lists (e.g., `BitstringStatusListEntry`), 
 | Network mismatch | `DOCUMENT_STATUS` | `ERROR` | The `rpcProviderUrl` points to a different network than where the document store is deployed. | Use an RPC URL that matches the network the document was issued on (e.g., Sepolia for testnet documents). |
 | DID resolution failure | `ISSUER_IDENTITY` | `ERROR` | The DID endpoint is unreachable or returns an invalid document. | Check network connectivity. Verify the DID URL is correct and the hosting server is running. |
 | Missing status list | `DOCUMENT_STATUS` | `ERROR` | The `statusListCredential` URL is unreachable or returns invalid data. | Ensure the status list credential is published and accessible at the URL specified in the credential. |
+| Obligation Registry document not minted | `DOCUMENT_STATUS` (`ObligationRecords`) | `INVALID` | The token has not been minted under the given `obligationRegistry` address, or the address is wrong. | Confirm `credentialStatus.obligationRegistry` and the token ID match a minted Bill of Exchange document. |
