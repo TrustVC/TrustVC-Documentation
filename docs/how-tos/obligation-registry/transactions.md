@@ -4,6 +4,10 @@ title: Perform Transactions
 sidebar_label: Perform Transactions
 ---
 
+:::caution Beta
+Obligation Registry (Bill of Exchange) support is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
+:::
+
 ## Background
 
 A Bill of Exchange is a written, unconditional order by one party (the **drawer**) directing another party (the **drawee**) to pay a fixed sum to a payee, either on demand or at a future date. Once the drawee agrees to honour the bill, they are said to have **accepted** it — from that point they are obligated to pay it. If they refuse, they **reject** it. Once the payee has actually been paid, the bill is **discharged**.

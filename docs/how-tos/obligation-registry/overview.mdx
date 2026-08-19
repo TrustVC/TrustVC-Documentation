@@ -4,6 +4,10 @@ title: Obligation Registry Overview
 sidebar_label: Overview
 ---
 
+:::caution Beta
+Obligation Registry (Bill of Exchange) support is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
+:::
+
 The Obligation Registry is TrustVC's title registry for documents whose lifecycle needs more than "who currently holds it" — it adds a real business **status** on-chain: has the holder accepted the document, rejected it, or has it already been paid off (discharged)? The first document type built on it is the electronic **Bill of Exchange (BoE)**.
 
 It is built on the same [Electronic Transferable Record (ETR)](/docs/how-tos/deployment) foundations as the classic Token Registry / Title Escrow pattern — the same custody model, the same endorsement rules — with one addition: a status field that only the Obligation Registry understands.

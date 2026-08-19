@@ -4,6 +4,10 @@ title: Deployment
 sidebar_label: Deployment
 ---
 
+:::caution Beta
+Obligation Registry (Bill of Exchange) support is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
+:::
+
 ## Obligation Registry
 
 The Obligation Registry contract (`TrustVCToken`) is deployed together with its own `ObligationEscrowFactory` — the same two-contract pattern as a standalone Token Registry deployment, but using the obligation contracts instead of the classic ETR ones.
