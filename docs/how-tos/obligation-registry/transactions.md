@@ -62,7 +62,7 @@ npm install --save  @trustvc/trustvc
 
 To use the package, you will need to provide your own Web3 [provider](https://docs.ethers.io/v5/api/providers/api-providers/) or [signer](https://docs.ethers.io/v5/api/signer/#Wallet) (if you are writing to the blockchain).
 
-> Full function reference: [trustvc SDK README — Obligation Registry (BoE)](https://github.com/TrustVC/trustvc/blob/main/README.md#c-obligation-registry-boe).
+> Full function reference: [TrustVC SDK README — Obligation Registry (BoE)](https://github.com/TrustVC/trustvc/blob/main/README.md#c-obligation-registry-boe).
 
 ### Mint (Issue) a Document
 
@@ -199,18 +199,14 @@ const status = await getObligationRegistryStatus({ obligationRegistryAddress, to
 
 ### Installation
 
-> **Version note**: The `obligation-registry` / `obligation-escrow` commands below require `@trustvc/trustvc-cli@1.3.0-beta.4` or later (`endorsement-chain` was not included in `1.3.0-beta.3`) -- they are not yet in a stable release, so pin the version (or use the `beta` dist-tag) as shown.
-
 ```bash
-npm install -g @trustvc/trustvc-cli@1.3.0-beta.4
-# or, to track the latest beta:
-npm install -g @trustvc/trustvc-cli@beta
+npm install -g @trustvc/trustvc-cli
 ```
 
 You can also opt to use npx:
 
 ```bash
-npx @trustvc/trustvc-cli@1.3.0-beta.4 <arguments>
+npx @trustvc/trustvc-cli <arguments>
 ```
 
 > **Note**: Before minting, set `credentialStatus.obligationRegistry` on your document (not `tokenRegistry`) to your deployed registry address, then sign it with `trustvc w3c-sign`. Mint only accepts a signed document.

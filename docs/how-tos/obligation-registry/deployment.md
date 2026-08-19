@@ -10,8 +10,6 @@ The Obligation Registry contract (`TrustVCToken`) is deployed together with its 
 
 ### Installing TrustVC CLI
 
-> **Version note**: The `obligation-registry` / `obligation-escrow` commands used on this page require `@trustvc/trustvc-cli@1.3.0-beta.3` or later -- they have not shipped in a stable release yet, so plain `npm install -g @trustvc/trustvc-cli` (which resolves to the latest stable version) will **not** include them. Install from the `beta` dist-tag, or pin the version explicitly, as shown below.
-
 #### Binary
 
 To install the binary, simply download the binary from the [CLI release page](https://github.com/TrustVC/trustvc-cli/releases) for your OS.
@@ -21,9 +19,7 @@ To install the binary, simply download the binary from the [CLI release page](ht
 For Linux or MacOS users, if you have npm installed on your machine, you may install the CLI using the following command:
 
 ```bash
-npm install -g @trustvc/trustvc-cli@1.3.0-beta.3
-# or, to track the latest beta:
-npm install -g @trustvc/trustvc-cli@beta
+npm install -g @trustvc/trustvc-cli
 ```
 
 The above command will install the TrustVC CLI to your machine. You will need to have node.js installed to be able to run the command.
@@ -31,7 +27,7 @@ The above command will install the TrustVC CLI to your machine. You will need to
 You can also opt to use npx:
 
 ```bash
-npx @trustvc/trustvc-cli@1.3.0-beta.3 <arguments>
+npx @trustvc/trustvc-cli <arguments>
 ```
 
 ### Deploying via CLI
@@ -64,7 +60,7 @@ npm install --save  @trustvc/trustvc
 
 To use the package, you will need to provide your own Web3 [provider](https://docs.ethers.io/v5/api/providers/api-providers/) or [signer](https://docs.ethers.io/v5/api/signer/#Wallet) (if you are writing to the blockchain).
 
-> Full function reference: [trustvc SDK README — Obligation Registry (BoE)](https://github.com/TrustVC/trustvc/blob/main/README.md#c-obligation-registry-boe).
+> Full function reference: [TrustVC SDK README — Obligation Registry (BoE)](https://github.com/TrustVC/trustvc/blob/main/README.md#c-obligation-registry-boe).
 
 The quickest way to deploy is the SDK's convenience function, which deploys a new `ObligationEscrowFactory` and `TrustVCToken` for you in a single call:
 
