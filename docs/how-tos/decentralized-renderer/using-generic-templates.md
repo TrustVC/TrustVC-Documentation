@@ -179,13 +179,13 @@ Unlike the other generic templates, a Bill of Exchange document's `credentialSta
       "name": "Fairview Industries Inc.",
       "address": "1201 Market Street, Suite 900, Wilmington, DE 19801, USA",
       "authorisedSignatoryName": "James R. Carter",
-      "signature": "data:image/png;base64,iVBORw0KGgo..."
+      "signature": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
     },
     "drawer": {
       "name": "Meridian Commodities Pte Ltd",
       "address": "8 Marina Boulevard, #24-01, Singapore 018981",
       "authorisedSignatoryName": "Wei Ling Tan",
-      "signature": "data:image/png;base64,iVBORw0KGgo..."
+      "signature": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
     }
   },
   "validUntil": "2026-12-31T15:53:58.112Z",
@@ -200,6 +200,8 @@ Fields on `drawee` / `drawer` (both optional `BillOfExchangeParty` objects): `na
 You can create and issue sample document using the [TrustVC Creator (V5 - Mainnet)](https://v5-token-registry.tradetrust.io/creator) / [TrustVC Creator (V5 - Testnet)](https://v5-token-registry.dev.tradetrust.io/creator).
 
 Alternatively, you can setup your own creator by following the [TrustVC Creator Tutorial](/docs/tutorial/creator.md).
+
+> **Bill of Exchange documents can't be issued through the Creator above** -- it only supports the classic Token Registry. Mint them on testnet through the beta CLI instead (`npm install -g @trustvc/trustvc-cli@beta`, then `trustvc obligation-registry mint`) -- see [Mint document to the Obligation Registry](/docs/how-tos/obligation-registry/transactions#mint-document-to-the-obligation-registry) for the full flow.
 
 ## Limitations of Generic Templates
 
