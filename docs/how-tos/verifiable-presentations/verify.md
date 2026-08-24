@@ -59,24 +59,20 @@ identically whether one credential was checked or five, so the count states what
 Drop the presentation onto the verifier at [trustvc.io](https://trustvc.io) — no installation, and
 useful for confirming what a counterparty will see when you send them a presentation.
 
-Two things differ from verifying a single credential:
+![A Verifiable Presentation verified on trustvc.io: the envelope shows who presented it and its
+checks, and each embedded credential appears on its own tab with its own
+checks.](/docs/verifiable-presentations/web-verifier-presentation.png)
 
-**The envelope's checks map to the fragments like this:**
+A presentation is displayed in two levels, which is the main difference from a single credential:
 
-| Check shown | Fragment behind it | What it actually covers |
-|---|---|---|
-| Presenter's identity has been identified | `ISSUER_IDENTITY` | the embedded credentials' **issuers** |
-| Presentation has not been tampered with | `DOCUMENT_INTEGRITY` | the holder's proof, **including holder binding** |
+- The card at the top describes the **envelope** — **Presented by** is the holder DID, and the
+  `W3C VP V2.0` and `2 Credentials` tags say what was uploaded.
+- Under **Credentials in this presentation**, each embedded credential has its **own tab**,
+  labelled by its template or type, carrying its own **Issued by** and its own checks.
 
-Read that first row carefully: despite its wording it is the credentials' issuers being resolved,
-not the presenter. Whether the presenter is the holder they claim to be is part of the holder
-proof, so it is the second row that answers it — consistent with
-[what each fragment covers](#what-each-fragment-covers) below.
-
-**Each credential gets its own tab**, under "Credentials in this presentation", labelled by its
-template or type and carrying its own checks. That is where a per-credential problem surfaces: an
-expired or revoked credential shows against the credential it belongs to, not against the
-presentation.
+So a per-credential problem surfaces against the credential it belongs to, not against the
+presentation: an expired or revoked credential shows a cross on its tab while the envelope's checks
+stay green.
 
 When verification fails, the page switches to an error state carrying the reason, so read the
 message rather than the rows.
