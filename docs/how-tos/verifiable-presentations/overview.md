@@ -78,7 +78,7 @@ To create a presentation you need:
 
 | Requirement | Detail |
 |---|---|
-| **A holder DID with its key pair** | The private key signs the presentation. Either a `did:key` or a published `did:web`. |
+| **The holder's existing DID and key pair** | The private key signs the presentation. It must be the DID the credentials were issued to — not a key generated for the occasion, since a new key is a new DID and would match nothing. Either a `did:key` or a published `did:web`. |
 | **An ECDSA (P-256) holder key** | Presentation proofs use the `ecdsa-rdfc-2019` cryptosuite, which requires an ECDSA key. A BBS key **cannot** sign a presentation. |
 | **One or more signed credentials about that holder** | Each with `credentialSubject.id` equal to the holder DID. |
 | **An expiry** | Either a lifetime in seconds or an explicit `validUntil`. A presentation cannot be open-ended. |

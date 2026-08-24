@@ -134,9 +134,19 @@ The first prompt accepts three forms:
 > the holder, so any other answer could only fail — it is read from the key pair and printed, as
 > above.
 
-The key pair must be the `didKeyPairs.json` produced by
-[`trustvc w3c did-web`](../issuer/did-web.md) — a file that carries a `controller`. The bare
-`keypair.json` from `key-pair-generation` has no DID attached and is rejected before signing:
+**This is the holder's existing key — do not generate a new one to make a presentation.** The key
+you sign with determines the DID that goes into `holder`, and that DID has to be the one the
+credentials were issued to, i.e. the `credentialSubject.id` the issuer put in them. A fresh key
+means a fresh DID, so every credential would then be about somebody else and signing would be
+refused.
+
+In other words the identity comes first: you hold a DID, an issuer issues credentials naming it as
+the subject, and later you present them with the same key. Key generation belongs to
+[setting up that identity](../issuer/did-web.md), not to presenting.
+
+Mechanically the file must be **bound to a DID** — it needs a `controller`. That is the
+`didKeyPairs.json` written when the DID was set up. The bare `keypair.json` from
+`key-pair-generation` is key material with no DID attached, and is rejected before signing:
 
 ```text
 ✖  error     The key pair at ./keypair.json is not bound to a DID (no "controller").
