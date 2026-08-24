@@ -139,10 +139,6 @@ into `holder`, and that must be the `credentialSubject.id` the issuer named — 
 fresh DID and would match nothing. The identity comes first: you hold a DID, credentials are issued
 to it, and you present them later with the same key.
 
-Pass the key pair file bound to that DID — for a `did:web` holder, the `didKeyPairs.json` from
-[DID setup](../issuer/did-web.md). The bare `keypair.json` from `key-pair-generation` is key
-material with no DID attached and is rejected.
-
 When a credential cannot be presented, the CLI names the **file** rather than an index, and writes
 nothing:
 

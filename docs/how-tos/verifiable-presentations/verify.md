@@ -170,15 +170,8 @@ broken one:
 ```
 
 `DOCUMENT_INTEGRITY` stays `VALID`, and that is correct: the signature is sound, the holder is who
-they claim to be, nothing was altered. A claim inside is simply no longer current.
-
-If you surface verification results to users, branch on the message, not just the fragment type. A
-UI that reports both as *"this has expired, ask the holder to present again"* sends people to the
-wrong party for half of these cases.
-
-The same applies to revocation: a revoked credential inside a valid presentation is **not** a
-tampered document. The holder's proof is sound; a credential simply went bad afterwards. Reporting
-it as tampering is both wrong and unactionable.
+they claim to be, nothing was altered. A claim inside is simply no longer current. The same holds
+for a revoked credential — the holder's proof is unaffected by a credential going bad afterwards.
 
 ### An unresolvable issuer also fails integrity
 
