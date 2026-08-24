@@ -169,14 +169,13 @@ and no more. The credentials inside are unaffected — they keep their own, much
 
 ### `validFrom` is stamped, not chosen
 
-The opening edge of the window is set for you: `resolveVpValidity` defaults it to the signing
-moment, and `createPresentation` writes it onto every presentation. You cannot omit it, and you
-cannot remove it afterwards — it is inside the signed payload, so deleting it invalidates the
-holder's proof.
+The opening edge of the window is set for you — it is the moment of signing. Every presentation
+gets one, you cannot omit it, and you cannot remove it afterwards: it sits inside the signed
+payload, so deleting it invalidates the holder's proof.
 
-Through the CLI you are only ever asked how the window **closes**. So a presentation's `validFrom`
-is a record of when it was signed, not a scheduling control, and a "not yet valid" presentation is
-not a state an honest document reaches.
+You are only ever asked how the window **closes**. So a presentation's `validFrom` records when it
+was signed rather than scheduling when it becomes usable, and a "not yet valid" presentation is not
+a state an honest document reaches.
 
 :::note
 A *credential's* `validFrom` is different — it is chosen by its issuer and can legitimately sit in
@@ -185,19 +184,39 @@ the future. Such a credential cannot be presented until it becomes valid.
 
 ## Common signing failures
 
-Every one of these refuses to sign and writes nothing, by design.
+Signing is refused rather than producing a presentation that could not be verified, and **nothing
+is written** when it fails. Every refusal names the credential responsible **by its index** in the
+list you passed, so with several credentials you can tell which one is at fault — and the CLI names
+the **file** it came from as well.
 
-| Error | Cause | Fix |
-|---|---|---|
-| `is about "did:key:…", which does not match the holder "did:key:…"` | The credential's subject is somebody else. | Present a credential about the holder, or use the key pair of the credential's actual subject. |
-| `has no "credentialSubject.id", so it cannot be bound to the holder.` | The credential was issued without a subject id. | Reissue it with `credentialSubject.id` set. It cannot be fixed after issuance. |
-| `has expired (…)` | The credential's `validUntil` has passed. | Ask the issuer to reissue. Re-presenting cannot help. |
-| `has been revocation (credentialStatus).` | The credential is revoked on its status list. | Ask the issuer. A revoked credential can never be presented. |
-| `has a "TransferableRecords" credentialStatus and cannot be included in a Verifiable Presentation.` | Ownership of a transferable record lives on-chain, not in a presentation. | Present it through its token ownership instead. |
-| `is not valid: Invalid signature.` | The credential was edited after signing. | Re-sign from the original source data. |
-| `each credential must be a signed credential object (with a "proof").` | The input is a raw, unsigned credential. | Sign the credential first. |
-| `An ECDSA (P-256) Multikey is required to sign a presentation with "ecdsa-rdfc-2019".` | The holder key pair is BBS, or the key material is unreadable. | Use an ECDSA (P-256) holder key. The credentials inside may still be BBS. |
-| `a VP lifetime is required: pass "expiresInSeconds" or "validUntil".` | No expiry was given. | Set one of the two. |
+The refusals fall into two groups.
+
+### The credential cannot be bound to this holder
+
+| What went wrong | Fix |
+|---|---|
+| The credential is about somebody else — its `credentialSubject.id` is not the holder. | Present a credential whose subject is the holder, or sign with the key pair of the credential's actual subject. |
+| The credential has no `credentialSubject.id` at all, so there is nothing to bind. | Reissue it with a subject id. Selective disclosure keeps an id that was present at issuance, so this cannot be fixed afterwards. |
+| The declared holder is not the signing key's DID. | Set `holder` to the DID of the key you are signing with — through the CLI this is automatic. |
+
+### The credential is not currently presentable
+
+| What went wrong | Fix |
+|---|---|
+| It has expired. | Ask the issuer to reissue. Re-presenting cannot help — only the issuer can extend a credential's life. |
+| It is not yet valid — its `validFrom` is in the future. | Wait until it becomes valid, or ask the issuer. |
+| It has been revoked or suspended on its status list. | Ask the issuer. A revoked credential can never be presented. |
+| It is a **transferable record** — its `credentialStatus` is `TransferableRecords`. | Present it through its token ownership instead. Ownership lives on-chain, not in a presentation. |
+| It is unsigned — a raw credential with no `proof`. | Sign the credential first. |
+| It was edited after signing, so its own signature no longer verifies. | Re-sign from the original source data. Never edit a signed credential. |
+| Its issuer's DID cannot be resolved, so its signature cannot be checked. | Publish or restore the issuer's DID document. |
+
+Two failures are about the presentation rather than a credential:
+
+| What went wrong | Fix |
+|---|---|
+| The holder key is not ECDSA (P-256) — a BBS key, or unreadable key material. | Use an ECDSA holder key. The **credentials** inside may still be BBS; only the holder's key is constrained. |
+| No expiry was given, or `validUntil` is not after `validFrom`. | Set `expiresInSeconds` or a future `validUntil`. |
 
 ## Try it
 
