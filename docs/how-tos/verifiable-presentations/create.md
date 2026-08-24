@@ -9,10 +9,17 @@ import TabItem from "@theme/TabItem";
 
 ## Overview
 
-`signW3CPresentation` bundles one or more signed Verifiable Credentials into an envelope and signs
-it with the holder's key. It applies the
-[holder-binding rule](./overview.md#the-holder-binding-rule) before signing, so a presentation it
-produces is always one the holder is entitled to make.
+A presentation is created by `signW3CPresentation` in the library, or by `trustvc vp-sign` on the
+command line:
+
+```bash
+npm install @trustvc/trustvc          # library
+npm install -g @trustvc/trustvc-cli   # CLI
+```
+
+Either way it bundles one or more signed Verifiable Credentials into an envelope and signs it with
+the holder's key, applying the [holder-binding rule](./overview.md#the-holder-binding-rule) first,
+so a presentation it produces is always one the holder is entitled to make.
 
 Three things have to hold — they are the checks that fail in practice:
 
@@ -25,20 +32,18 @@ Three things have to hold — they are the checks that fail in practice:
 <Tabs>
   <TabItem value="library" label="Using the library" default>
 
-Install the library:
-
-```bash
-npm install @trustvc/trustvc
-```
-
-Sign the presentation:
-
 ```ts
+import { readFileSync } from 'node:fs';
 import { signW3CPresentation } from '@trustvc/trustvc';
+
+// The holder's DID key pair — `controller` is the holder DID, and the file holds
+// the private key, so keep it out of source control.
+const holderKeyPair = JSON.parse(readFileSync('./didKeyPairs.json', 'utf8'));
+const signedCredential = JSON.parse(readFileSync('./credentials/bill_of_lading.json', 'utf8'));
 
 const { signed, error } = await signW3CPresentation(
   signedCredential,          // one credential, or an array of them
-  holderKeyPair,             // the holder's did key pair (contains the private key)
+  holderKeyPair,
   {
     holder: holderKeyPair.controller,   // must equal every credentialSubject.id
     expiresInSeconds: 600,              // or: validUntil: '2026-01-01T00:00:00Z'
@@ -192,7 +197,7 @@ The refusals fall into two groups.
 | What went wrong | Fix |
 |---|---|
 | The credential is about somebody else — its `credentialSubject.id` is not the holder. | Present a credential whose subject is the holder, or sign with the key pair of the credential's actual subject. |
-| The credential has no `credentialSubject.id` at all, so there is nothing to bind. | Reissue it with a subject id. Selective disclosure keeps an id that was present at issuance, so this cannot be fixed afterwards. |
+| The credential has no `credentialSubject.id` at all, so there is nothing to bind. | Ask the issuer to reissue it with a subject id. It cannot be added afterwards. |
 | The declared holder is not the signing key's DID. | Set `holder` to the DID of the key you are signing with — through the CLI this is automatic. |
 
 ### The credential is not currently presentable

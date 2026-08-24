@@ -55,8 +55,7 @@ Two consequences worth knowing before you start:
   as long as its subject is you. In practice the issuer is usually a different party — a bank, a
   carrier, an authority.
 - **A credential with no `credentialSubject.id` can never be presented.** There is nothing to bind
-  it to. Selective disclosure keeps an id that was present at issuance, so this cannot be fixed
-  after the fact — the credential has to be reissued with a subject id.
+  it to, and the id cannot be added after issuance — the credential has to be reissued.
 
 ## When to use one
 
@@ -66,8 +65,6 @@ not merely that a document is authentic:
 - A bank asked for a bill of lading and needs to know the trader sending it actually holds it.
 - A counterparty needs several credentials at once — a certificate of origin and a bill of lading
   — bundled and attributable to one party.
-- You want to disclose only some fields of a credential, and prove the disclosure came from the
-  holder.
 
 If you only need to prove a document is authentic and unmodified, a Verifiable Credential on its
 own is enough. Reach for a presentation when **ownership** matters.
