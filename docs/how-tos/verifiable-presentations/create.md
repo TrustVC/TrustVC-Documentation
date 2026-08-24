@@ -137,20 +137,11 @@ The first prompt accepts three forms:
 **Use the holder's existing key, not a new one.** The key you sign with fixes the DID that goes
 into `holder`, and that must be the `credentialSubject.id` the issuer named — a fresh key is a
 fresh DID and would match nothing. The identity comes first: you hold a DID, credentials are issued
-to it, and you present them later with the same key. Generating keys belongs to
-[setting up that identity](../issuer/did-web.md), not to presenting.
+to it, and you present them later with the same key.
 
-The file has to be **bound to a DID** — it carries a `controller`, which is the holder DID the
-presentation will claim. Both DID methods give you one:
-
-| Holder DID | Where the key pair comes from |
-|---|---|
-| `did:web` | `trustvc did-web` writes `didKeyPairs.json`, with `controller` set to the `did:web`. |
-| `did:key` | `issuer.generateDidKeyPair()` in the library returns one, with `controller` set to the `did:key`. The CLI has no did:key command, so generate it with the library and pass the file here. |
-
-What is **not** accepted is the bare `keypair.json` from `key-pair-generation`: it is key material
-only — `type`, `publicKeyMultibase`, `secretKeyMultibase` — with no DID attached, so there is no
-holder to bind to.
+Pass the key pair file bound to that DID — for a `did:web` holder, the `didKeyPairs.json` from
+[DID setup](../issuer/did-web.md). The bare `keypair.json` from `key-pair-generation` is key
+material with no DID attached and is rejected.
 
 When a credential cannot be presented, the CLI names the **file** rather than an index, and writes
 nothing:
