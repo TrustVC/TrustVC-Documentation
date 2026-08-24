@@ -163,12 +163,6 @@ This is the case most worth testing against, because it is the one that is easy 
 they claim to be, nothing was altered. A credential simply expired after the presentation was made.
 The document is not broken — a claim inside it is no longer current.
 
-:::note
-In `@trustvc/trustvc` versions before **2.15.2**, an expired embedded credential was reported on
-`DOCUMENT_INTEGRITY` instead, which made it indistinguishable from tampering. If you are pinning an
-older version, expect the failure on the other fragment.
-:::
-
 ## Verifying credentials individually
 
 The presentation's fragments are the source of truth for the overall verdict — only they check the
