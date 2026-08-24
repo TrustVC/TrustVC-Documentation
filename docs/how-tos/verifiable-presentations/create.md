@@ -134,24 +134,23 @@ The first prompt accepts three forms:
 > the holder, so any other answer could only fail — it is read from the key pair and printed, as
 > above.
 
-**This is the holder's existing key — do not generate a new one to make a presentation.** The key
-you sign with determines the DID that goes into `holder`, and that DID has to be the one the
-credentials were issued to, i.e. the `credentialSubject.id` the issuer put in them. A fresh key
-means a fresh DID, so every credential would then be about somebody else and signing would be
-refused.
-
-In other words the identity comes first: you hold a DID, an issuer issues credentials naming it as
-the subject, and later you present them with the same key. Key generation belongs to
+**Use the holder's existing key, not a new one.** The key you sign with fixes the DID that goes
+into `holder`, and that must be the `credentialSubject.id` the issuer named — a fresh key is a
+fresh DID and would match nothing. The identity comes first: you hold a DID, credentials are issued
+to it, and you present them later with the same key. Generating keys belongs to
 [setting up that identity](../issuer/did-web.md), not to presenting.
 
-Mechanically the file must be **bound to a DID** — it needs a `controller`. That is the
-`didKeyPairs.json` written when the DID was set up. The bare `keypair.json` from
-`key-pair-generation` is key material with no DID attached, and is rejected before signing:
+The file has to be **bound to a DID** — it carries a `controller`, which is the holder DID the
+presentation will claim. Both DID methods give you one:
 
-```text
-✖  error     The key pair at ./keypair.json is not bound to a DID (no "controller").
-             Create one with "trustvc did-web" and use the didKeyPairs.json it writes.
-```
+| Holder DID | Where the key pair comes from |
+|---|---|
+| `did:web` | `trustvc did-web` writes `didKeyPairs.json`, with `controller` set to the `did:web`. |
+| `did:key` | `issuer.generateDidKeyPair()` in the library returns one, with `controller` set to the `did:key`. The CLI has no did:key command, so generate it with the library and pass the file here. |
+
+What is **not** accepted is the bare `keypair.json` from `key-pair-generation`: it is key material
+only — `type`, `publicKeyMultibase`, `secretKeyMultibase` — with no DID attached, so there is no
+holder to bind to.
 
 When a credential cannot be presented, the CLI names the **file** rather than an index, and writes
 nothing:
