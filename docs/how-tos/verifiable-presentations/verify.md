@@ -204,12 +204,12 @@ them. Use it for display, not for the decision.
 ## Try it
 
 The CLI ships one presentation per outcome — valid, expired at each level, revoked, tampered,
-unsigned, holder-mismatched, unresolvable issuer — so every row of the failure table above can be
-reproduced:
+unsigned, holder-mismatched, unresolvable issuer — so each failure above can be reproduced against
+a real document:
 
 ```bash
 git clone https://github.com/TrustVC/trustvc-cli
-cd trustvc-cli && npm install && npm run build
+cd trustvc-cli && npm install
 node tests/fixtures/vp/generate.cjs
 
 trustvc verify   # → tests/fixtures/vp/presentations/invalid/credential_expired.json
