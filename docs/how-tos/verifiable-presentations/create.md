@@ -7,52 +7,14 @@ sidebar_label: Create a Presentation
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Quick start
-
-Presenting your own credentials takes two commands. You need the credentials, and the key pair of
-the DID they were issued to:
-
-```bash
-npm install -g @trustvc/trustvc-cli
-trustvc vp-sign
-```
-
-```text
-? …directory of signed Verifiable Credentials…: ./credentials
-? …holder did key-pair JSON file:               ./didKeyPairs.json
-? How should the presentation expiry be set?    ↵ (expires in seconds)
-? Enter the presentation lifetime in seconds:   ↵ (600)
-? Enter a directory to save…:                   ↵
-
-✔  success   Verifiable Presentation signed successfully
-✔  success   Signed verifiable presentation saved to: ./signed_vp.json
-```
-
-Then verify what you produced:
-
-```bash
-trustvc verify        # answer: ./signed_vp.json
-```
-
-```text
-✔  success   DOCUMENT_INTEGRITY: VALID
-✔  success   DOCUMENT_STATUS: VALID
-✔  success   ISSUER_IDENTITY: VALID
-ℹ  info      2 embedded credentials verified.
-```
-
-If signing is refused, it is almost always because a credential is not about the holder — see
-[How it works](#how-it-works) for the rule, and [Common signing failures](#common-signing-failures)
-for the rest. No credentials to hand? See [Sample credentials for testing](#sample-credentials-for-testing).
-
-## How it works
+## Overview
 
 `signW3CPresentation` bundles one or more signed Verifiable Credentials into an envelope and signs
-it with the holder's key. It performs the checks described in
-[Overview](./overview.md#the-holder-binding-rule) before signing, so a presentation it produces is
-always one the holder is entitled to make.
+it with the holder's key. It applies the
+[holder-binding rule](./overview.md#the-holder-binding-rule) before signing, so a presentation it
+produces is always one the holder is entitled to make.
 
-To use your own credentials, three things have to hold — they are the checks that fail in practice:
+Three things have to hold — they are the checks that fail in practice:
 
 1. Every credential's `credentialSubject.id` is the holder's DID.
 2. The holder's key pair is **ECDSA (P-256)**; a BBS key cannot sign a presentation.
