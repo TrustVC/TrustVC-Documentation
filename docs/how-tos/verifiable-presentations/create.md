@@ -9,30 +9,17 @@ import TabItem from "@theme/TabItem";
 
 ## Quick start
 
-To sign and verify a real presentation before writing any code, use the credential set the CLI
-ships. Its generator mints a holder key and credentials already bound to it, so nothing has to be
-issued first:
+Presenting your own credentials takes two commands. You need the credentials, and the key pair of
+the DID they were issued to:
 
 ```bash
 npm install -g @trustvc/trustvc-cli
-
-git clone https://github.com/TrustVC/trustvc-cli
-cd trustvc-cli && npm install
-node tests/fixtures/vp/generate.cjs
-```
-
-Bundle the credentials into a presentation:
-
-```bash
 trustvc vp-sign
 ```
 
-Answer the prompts with the generated set — the credentials folder and the holder key — and take
-the defaults for the rest:
-
 ```text
-? …directory of signed Verifiable Credentials…: tests/fixtures/vp/credentials/presentable
-? …holder did key-pair JSON file:               tests/fixtures/vp/keys/holder.json
+? …directory of signed Verifiable Credentials…: ./credentials
+? …holder did key-pair JSON file:               ./didKeyPairs.json
 ? How should the presentation expiry be set?    ↵ (expires in seconds)
 ? Enter the presentation lifetime in seconds:   ↵ (600)
 ? Enter a directory to save…:                   ↵
@@ -41,7 +28,7 @@ the defaults for the rest:
 ✔  success   Signed verifiable presentation saved to: ./signed_vp.json
 ```
 
-Then verify it:
+Then verify what you produced:
 
 ```bash
 trustvc verify        # answer: ./signed_vp.json
@@ -54,10 +41,9 @@ trustvc verify        # answer: ./signed_vp.json
 ℹ  info      2 embedded credentials verified.
 ```
 
-The rest of `tests/fixtures/vp/` is laid out so a file's expected outcome is readable from its path
-— `credentials/presentable/` and `credentials/rejected/`, `presentations/valid/` and
-`presentations/invalid/` — which makes it a ready set for testing your own integration against.
-That folder's `README.md` records the exact message each file produces.
+If signing is refused, it is almost always because a credential is not about the holder — see
+[How it works](#how-it-works) for the rule, and [Common signing failures](#common-signing-failures)
+for the rest. No credentials to hand? See [Sample credentials for testing](#sample-credentials-for-testing).
 
 ## How it works
 
@@ -265,6 +251,23 @@ Two failures are about the presentation rather than a credential:
 |---|---|
 | The holder key is not ECDSA (P-256) — a BBS key, or unreadable key material. | Use an ECDSA holder key. The **credentials** inside may still be BBS; only the holder's key is constrained. |
 | No expiry was given, or `validUntil` is not after `validFrom`. | Set `expiresInSeconds` or a future `validUntil`. |
+
+## Sample credentials for testing
+
+Credentials have to be issued to your holder DID before they can be presented, so if you do not
+have a suitable set yet — or want fixed inputs to test an integration against — the CLI ships a
+generator:
+
+```bash
+git clone https://github.com/TrustVC/trustvc-cli
+cd trustvc-cli && npm install
+node tests/fixtures/vp/generate.cjs
+```
+
+It writes a holder key and credentials already bound to it, plus one presentation per outcome, laid
+out so a file's expected result is readable from its path: `credentials/presentable/` and
+`credentials/rejected/`, `presentations/valid/` and `presentations/invalid/`. That folder's
+`README.md` records the exact message each file produces.
 
 ## Next steps
 
