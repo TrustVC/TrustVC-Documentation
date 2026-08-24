@@ -56,39 +56,25 @@ identically whether one credential was checked or five, so the count states what
 
   <TabItem value="web" label="Using the web verifier">
 
-Drop the presentation onto the verifier at [trustvc.io](https://www.trustvc.io) — no installation,
-and useful for confirming what a counterparty will see when you send them a presentation.
+Drop the presentation onto the verifier at [trustvc.io](https://trustvc.io) — no installation, and
+useful for confirming what a counterparty will see when you send them a presentation.
 
-The result reads differently from a single credential, in three ways worth knowing before you use
-it as a reference:
+Two things differ from verifying a single credential:
 
-**The envelope shows two checks, not three.**
+**The envelope's checks map to the fragments like this:**
 
 | Check shown | Fragment behind it |
 |---|---|
 | Presenter's identity has been identified | `ISSUER_IDENTITY` |
 | Presentation has not been tampered with | `DOCUMENT_INTEGRITY` |
 
-"Document has been issued" is deliberately absent at this level. Issuance is a property of each
-embedded credential, not of the envelope wrapping them, so it appears on the credentials instead.
-The identity line says **Presented by** rather than *Issued by*, for the same reason — the envelope
-is attributable to the holder.
-
 **Each credential gets its own tab**, under "Credentials in this presentation", labelled by its
-template or type and carrying its own three checks — issued, issuer identified, not tampered with.
-That is where a per-credential problem surfaces: an expired or revoked credential shows against
-the credential it belongs to, not against the presentation.
+template or type and carrying its own checks. That is where a per-credential problem surfaces: an
+expired or revoked credential shows against the credential it belongs to, not against the
+presentation.
 
-**A failing presentation shows a message, not a checklist.** When verification fails the page
-switches to an error state carrying the reason, so the wording matters more than the rows. The
-messages distinguish the two levels — a presentation that has expired names the presentation, and a
-credential that has expired names *that credential* and points at its issuer.
-
-:::note
-Verifying a presentation on the web verifier requires the release that adds presentation support.
-Until then, use the library or the CLI, both of which verify the same document with the same
-fragments.
-:::
+When verification fails, the page switches to an error state carrying the reason, so read the
+message rather than the rows.
 
   </TabItem>
 </Tabs>
@@ -144,19 +130,24 @@ Fragment statuses are the same four values as for credentials: `VALID`, `INVALID
 `ERROR`. See [Fragment Statuses](../verifydocument.md#fragment-statuses).
 
 What matters for a presentation is **which of the two levels failed**, because the remedy differs.
-The message tells you; the fragment type alone does not.
+The fragment type alone will not tell you — a presentation and a credential inside it can fail the
+same fragment. The **message** distinguishes them, and it follows a consistent shape:
 
-| Message | Fragment | What went wrong | Who can fix it |
-|---|---|---|---|
-| `Presentation has expired (validUntil …)` | `DOCUMENT_STATUS` | The presentation's own window closed. The credentials may be perfectly valid. | **The holder** — sign a new presentation. |
-| `Embedded credential at index N has expired (validUntil …)` | `DOCUMENT_STATUS` | A credential inside has passed its own expiry. | **The issuer** — the credential must be reissued. Re-presenting cannot help. |
-| `Embedded credential at index N is not yet valid (validFrom …)` | `DOCUMENT_STATUS` | A credential's window has not opened yet. | **The issuer**, or wait until it becomes valid. |
-| `Embedded credential at index N has been revoked (status purpose "revocation")` | `DOCUMENT_STATUS` | A credential was revoked on its status list, most likely after the presentation was signed. | **The issuer** — nothing the holder does will change it. |
-| `Presentation is not signed (no holder "proof"), so ownership cannot be proven.` | `DOCUMENT_INTEGRITY` | The envelope has no holder proof. Authentic credentials, unproven ownership. | **The holder** — sign the presentation. |
-| `Invalid signature.` | `DOCUMENT_INTEGRITY` | Something inside the signed payload was edited after signing — a credential field, or the `holder` value. | **The holder** — re-sign from the original credentials. Do not edit a signed presentation. |
-| `the presentation was signed by "did:key:…", which does not match the declared holder "did:key:…"` | `DOCUMENT_INTEGRITY` | The signature is genuine but belongs to someone other than the declared holder. | **The holder** — present with the key matching the credentials' subject. |
-| `Could not resolve issuer(s): index N (did:web:…)` | `ISSUER_IDENTITY` | An embedded credential names an issuer whose DID document cannot be fetched. | **The issuer** — publish or restore the DID document. |
-| `Presentation contains no verifiable credentials.` | `ISSUER_IDENTITY` | The `verifiableCredential` array is empty. | **The holder** — present at least one credential. |
+| The message names… | The fault is in… | Who can fix it |
+|---|---|---|
+| the **presentation** — "Presentation has expired…", "Presentation is not signed…" | the envelope the holder signed | **The holder** — sign a new presentation. The credentials inside may be perfectly valid. |
+| an **embedded credential**, always with its index — "Embedded credential at index 0 has…" | that one credential, identified by position | **The issuer** of that credential — it must be reissued or its status changed. Re-presenting cannot help. |
+| neither, e.g. "Invalid signature." | the signed payload as a whole | **The holder** — re-sign from the original credentials. Never edit a signed presentation. |
+
+So read the message first, and look for an index. `Embedded credential at index 1 …` means the
+second credential in the array — the numbering is zero-based, and it is how you find which one to
+chase.
+
+That shape holds for messages this page does not list. New checks are added to the verifier over
+time, and the same rule applies to them: a message naming the presentation is the holder's to fix,
+a message naming an embedded credential belongs to that credential's issuer.
+
+Two consequences are worth spelling out, because they are the ones that get reported wrongly.
 
 ### Do not collapse the two expiries
 
