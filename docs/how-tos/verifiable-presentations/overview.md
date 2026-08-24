@@ -151,4 +151,8 @@ need replay protection, keep the window short and treat each presentation as sin
 - **[Creating a Verifiable Presentation](./create.md)** — bundle and sign credentials, with the
   library or the CLI.
 - **[Verifying a Verifiable Presentation](./verify.md)** — what each verification fragment covers
-  and how to read a failure.
+  and how to read a failure, with the library, the CLI, or the web verifier.
+
+Presentations can be **created** with the library or the CLI, and **verified** with either of those
+or by dropping the file onto the verifier at [trustvc.io](https://www.trustvc.io). All three run the
+same checks and return the same fragments; they differ only in how the result is presented.

@@ -53,6 +53,44 @@ The final line appears only when the presentation is valid. The three status lin
 identically whether one credential was checked or five, so the count states what they cannot.
 
   </TabItem>
+
+  <TabItem value="web" label="Using the web verifier">
+
+Drop the presentation onto the verifier at [trustvc.io](https://www.trustvc.io) — no installation,
+and useful for confirming what a counterparty will see when you send them a presentation.
+
+The result reads differently from a single credential, in three ways worth knowing before you use
+it as a reference:
+
+**The envelope shows two checks, not three.**
+
+| Check shown | Fragment behind it |
+|---|---|
+| Presenter's identity has been identified | `ISSUER_IDENTITY` |
+| Presentation has not been tampered with | `DOCUMENT_INTEGRITY` |
+
+"Document has been issued" is deliberately absent at this level. Issuance is a property of each
+embedded credential, not of the envelope wrapping them, so it appears on the credentials instead.
+The identity line says **Presented by** rather than *Issued by*, for the same reason — the envelope
+is attributable to the holder.
+
+**Each credential gets its own tab**, under "Credentials in this presentation", labelled by its
+template or type and carrying its own three checks — issued, issuer identified, not tampered with.
+That is where a per-credential problem surfaces: an expired or revoked credential shows against
+the credential it belongs to, not against the presentation.
+
+**A failing presentation shows a message, not a checklist.** When verification fails the page
+switches to an error state carrying the reason, so the wording matters more than the rows. The
+messages distinguish the two levels — a presentation that has expired names the presentation, and a
+credential that has expired names *that credential* and points at its issuer.
+
+:::note
+Verifying a presentation on the web verifier requires the release that adds presentation support.
+Until then, use the library or the CLI, both of which verify the same document with the same
+fragments.
+:::
+
+  </TabItem>
 </Tabs>
 
 ## What each fragment covers
