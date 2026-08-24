@@ -35,6 +35,15 @@
       },
       "how-tos/verifydocument",
       {
+        "label": "Verifiable Presentations",
+        "type": "category",
+        "items": [
+          "how-tos/verifiable-presentations/overview",
+          "how-tos/verifiable-presentations/create",
+          "how-tos/verifiable-presentations/verify"
+        ]
+      },
+      {
         "label": "Transferable Records",
         "type": "category",
         "items": [
