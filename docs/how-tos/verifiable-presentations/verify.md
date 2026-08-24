@@ -130,6 +130,19 @@ read almost identically, but they need **opposite** remedies:
 - An **expired credential** is the issuer's to fix — the holder can re-present forever and it will
   keep failing.
 
+The second case is the one worth testing against, because a failing presentation here is not a
+broken one:
+
+```text
+ℹ  info      Verifying W3C Verifiable Presentation...
+✔  success   DOCUMENT_INTEGRITY: VALID
+⚠  warning   DOCUMENT_STATUS: INVALID - Embedded credential at index 0 has expired (validUntil 2026-01-01T09:25:04.812Z).
+✔  success   ISSUER_IDENTITY: VALID
+```
+
+`DOCUMENT_INTEGRITY` stays `VALID`, and that is correct: the signature is sound, the holder is who
+they claim to be, nothing was altered. A claim inside is simply no longer current.
+
 If you surface verification results to users, branch on the message, not just the fragment type. A
 UI that reports both as *"this has expired, ask the holder to present again"* sends people to the
 wrong party for half of these cases.
@@ -147,21 +160,6 @@ what could not be fetched.
 
 Report the issuer failure as the cause. The integrity failure is a symptom of it, and calling it
 tampering is misleading.
-
-## An expired credential inside a valid presentation
-
-This is the case most worth testing against, because it is the one that is easy to report wrongly:
-
-```text
-ℹ  info      Verifying W3C Verifiable Presentation...
-✔  success   DOCUMENT_INTEGRITY: VALID
-⚠  warning   DOCUMENT_STATUS: INVALID - Embedded credential at index 0 has expired (validUntil 2026-01-01T09:25:04.812Z).
-✔  success   ISSUER_IDENTITY: VALID
-```
-
-`DOCUMENT_INTEGRITY` stays `VALID`, and that is correct: the signature is sound, the holder is who
-they claim to be, nothing was altered. A credential simply expired after the presentation was made.
-The document is not broken — a claim inside it is no longer current.
 
 ## Verifying credentials individually
 
