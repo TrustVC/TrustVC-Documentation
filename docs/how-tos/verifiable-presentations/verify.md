@@ -147,9 +147,10 @@ That shape holds for messages this page does not list. New checks are added to t
 time, and the same rule applies to them: a message naming the presentation is the holder's to fix,
 a message naming an embedded credential belongs to that credential's issuer.
 
-Two consequences are worth spelling out, because they are the ones that get reported wrongly.
+Two cases are worth reading closely, because in both the fragment that fails is not the one you
+might expect.
 
-### Do not collapse the two expiries
+### The two expiries are different failures
 
 `Presentation has expired` and `Embedded credential … has expired` land on the **same fragment** and
 read almost identically, but they need **opposite** remedies:
@@ -159,8 +160,7 @@ read almost identically, but they need **opposite** remedies:
 - An **expired credential** is the issuer's to fix — the holder can re-present forever and it will
   keep failing.
 
-The second case is the one worth testing against, because a failing presentation here is not a
-broken one:
+In the second case the presentation itself is intact:
 
 ```text
 ℹ  info      Verifying W3C Verifiable Presentation...
@@ -180,8 +180,8 @@ When an embedded credential's issuer cannot be resolved, expect **two** failures
 problem — verifying a credential's signature requires the issuer's public key, which is exactly
 what could not be fetched.
 
-Report the issuer failure as the cause. The integrity failure is a symptom of it, and calling it
-tampering is misleading.
+So the integrity failure here is a consequence of the resolution failure, not separate evidence
+that the document was altered.
 
 ## Verifying credentials individually
 
