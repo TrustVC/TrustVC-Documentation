@@ -63,10 +63,15 @@ Two things differ from verifying a single credential:
 
 **The envelope's checks map to the fragments like this:**
 
-| Check shown | Fragment behind it |
-|---|---|
-| Presenter's identity has been identified | `ISSUER_IDENTITY` |
-| Presentation has not been tampered with | `DOCUMENT_INTEGRITY` |
+| Check shown | Fragment behind it | What it actually covers |
+|---|---|---|
+| Presenter's identity has been identified | `ISSUER_IDENTITY` | the embedded credentials' **issuers** |
+| Presentation has not been tampered with | `DOCUMENT_INTEGRITY` | the holder's proof, **including holder binding** |
+
+Read that first row carefully: despite its wording it is the credentials' issuers being resolved,
+not the presenter. Whether the presenter is the holder they claim to be is part of the holder
+proof, so it is the second row that answers it — consistent with
+[what each fragment covers](#what-each-fragment-covers) below.
 
 **Each credential gets its own tab**, under "Credentials in this presentation", labelled by its
 template or type and carrying its own checks. That is where a per-credential problem surfaces: an

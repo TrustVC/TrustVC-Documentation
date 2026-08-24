@@ -46,7 +46,7 @@ const { signed, error } = await signW3CPresentation(
   holderKeyPair,
   {
     holder: holderKeyPair.controller,   // must equal every credentialSubject.id
-    expiresInSeconds: 600,              // or: validUntil: '2026-01-01T00:00:00Z'
+    expiresInSeconds: 600,              // or: validUntil: <ISO 8601, must be in the future>
   },
 );
 
@@ -61,8 +61,8 @@ The result is the presentation, ready to send:
   "@context": ["https://www.w3.org/ns/credentials/v2", "..."],
   "type": ["VerifiablePresentation"],
   "holder": "did:key:zDnaeSSj4pMHnBjMEQHKmT2hVFNGxAujN3JXWnyDaEwrNKvxc",
-  "validFrom": "2026-01-01T09:15:04.812Z",
-  "validUntil": "2026-01-01T09:25:04.812Z",
+  "validFrom": "<the moment of signing>",
+  "validUntil": "<600 seconds later>",
   "verifiableCredential": [{ "...": "the credentials, unchanged" }],
   "proof": {
     "type": "DataIntegrityProof",
