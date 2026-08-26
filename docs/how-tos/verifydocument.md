@@ -46,7 +46,21 @@ console.log(integrityFragment.status); // "VALID" | "INVALID" | "SKIPPED" | "ERR
 
 Checks whether the credential has been revoked or suspended. For W3C VCs using `BitstringStatusListEntry`, this resolves the status list credential and checks the bit at the specified index. For OpenAttestation v2 documents, this checks the on-chain document store or token registry.
 
-For W3C VCs backed by an on-chain transferable record, `verifyDocument` auto-detects whether `credentialStatus` points at a classic Token Registry (`tokenRegistry`) or an Obligation Registry / Bill of Exchange (`obligationRegistry`) and runs the matching check. Both report as `DOCUMENT_STATUS`, but the fragment `name` differs -- `TransferableRecords` for classic ETR, `ObligationRecords` for BoE -- and the returned `data` carries `tokenRegistry` or `obligationRegistry` respectively. Both checks use the same "minted" semantics (the token's owner is not the zero address), so a BoE document that has been rejected or discharged -- which burns it to a dead address, not the zero address -- still reports `VALID` here, same as a surrendered classic ETR document.
+For W3C VCs backed by an on-chain transferable record, `verifyDocument` auto-detects which kind of registry `credentialStatus` points at and runs the matching check:
+
+#### Classic ETR
+
+Checks `credentialStatus.tokenRegistry`. Reports as `DOCUMENT_STATUS` with fragment `name` `TransferableRecords`, and the returned `data` carries `tokenRegistry`. Uses minted semantics: the token's owner is not the zero address.
+
+#### Obligation Registry
+
+:::caution Beta
+Obligation Registry (Bill of Exchange) support is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
+:::
+
+Checks `credentialStatus.obligationRegistry`. Reports as `DOCUMENT_STATUS` with fragment `name` `ObligationRecords`, and the returned `data` carries `obligationRegistry`. Uses minted semantics: the token's owner is not the zero address. A rejected or discharged Bill of Exchange burns the token to a dead (non-zero) address rather than the zero address, so it still reports `VALID` here.
+
+> **`DOCUMENT_STATUS: VALID` here only confirms the document was minted on the Obligation Registry -- it does not mean the obligation is still active or payable.** Since a rejected or discharged Bill of Exchange satisfies the same minted semantics, `isValid()` (see [Using the isValid Helper](#using-the-isvalid-helper) below) will also return `true` for both. To check whether an obligation is actually outstanding, call `getObligationRegistryStatus` and check its result against the `Rejected` or `Discharged` states.
 
 ```ts
 const statusFragment = fragments.find((f) => f.type === 'DOCUMENT_STATUS');
@@ -136,4 +150,5 @@ For W3C VCs that use off-chain status lists (e.g., `BitstringStatusListEntry`), 
 | Network mismatch | `DOCUMENT_STATUS` | `ERROR` | The `rpcProviderUrl` points to a different network than where the document store is deployed. | Use an RPC URL that matches the network the document was issued on (e.g., Sepolia for testnet documents). |
 | DID resolution failure | `ISSUER_IDENTITY` | `ERROR` | The DID endpoint is unreachable or returns an invalid document. | Check network connectivity. Verify the DID URL is correct and the hosting server is running. |
 | Missing status list | `DOCUMENT_STATUS` | `ERROR` | The `statusListCredential` URL is unreachable or returns invalid data. | Ensure the status list credential is published and accessible at the URL specified in the credential. |
+| Token Registry document not minted | `DOCUMENT_STATUS` (`TransferableRecords`) | `INVALID` | The token has not been minted under the given `tokenRegistry` address, or the address is wrong. | Confirm `credentialStatus.tokenRegistry` and the token ID match a minted document. |
 | Obligation Registry document not minted | `DOCUMENT_STATUS` (`ObligationRecords`) | `INVALID` | The token has not been minted under the given `obligationRegistry` address, or the address is wrong. | Confirm `credentialStatus.obligationRegistry` and the token ID match a minted Bill of Exchange document. |
