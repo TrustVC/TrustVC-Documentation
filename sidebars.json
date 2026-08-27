@@ -9,6 +9,17 @@
     ],
     "How Tos": [
       {
+        "label": "Pay on Behalf (EIP-7702)",
+        "type": "category",
+        "items": [
+          "how-tos/pay-on-behalf/overview",
+          "how-tos/pay-on-behalf/setup",
+          "how-tos/pay-on-behalf/operations",
+          "how-tos/pay-on-behalf/cli",
+          "how-tos/pay-on-behalf/tt-web-settings"
+        ]
+      },
+      {
         "label": "W3C Verifiable Credentials",
         "type": "category",
         "items": [
@@ -35,11 +46,32 @@
       },
       "how-tos/verifydocument",
       {
+        "label": "Verifiable Presentations",
+        "type": "category",
+        "items": [
+          "how-tos/verifiable-presentations/overview",
+          "how-tos/verifiable-presentations/create",
+          "how-tos/verifiable-presentations/verify"
+        ]
+      },
+      {
         "label": "Transferable Records",
         "type": "category",
         "items": [
-          "how-tos/deployment",
-          "how-tos/transactions",
+          {
+            "label": "Classic ETR",
+            "type": "category",
+            "items": ["how-tos/deployment", "how-tos/transactions"]
+          },
+          {
+            "label": "Obligation ETR",
+            "type": "category",
+            "items": [
+              "how-tos/obligation-registry/overview",
+              "how-tos/obligation-registry/deployment",
+              "how-tos/obligation-registry/transactions"
+            ]
+          },
           "how-tos/fetch-endorsement-chain"
         ]
       },
