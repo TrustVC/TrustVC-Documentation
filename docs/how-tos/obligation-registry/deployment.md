@@ -5,7 +5,7 @@ sidebar_label: Deployment
 ---
 
 :::caution Beta
-Obligation Registry (Bill of Exchange) support is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
+Obligation Registry support (including the bill-of-exchange profile) is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
 :::
 
 ## Obligation Registry

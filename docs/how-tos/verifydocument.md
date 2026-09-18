@@ -55,7 +55,7 @@ Checks `credentialStatus.tokenRegistry`. Reports as `DOCUMENT_STATUS` with fragm
 #### Obligation Registry
 
 :::caution Beta
-Obligation Registry (Bill of Exchange) support is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
+Obligation Registry support (including the bill-of-exchange profile) is currently in **beta**. APIs, contract addresses, and behavior may change before the stable release. Use on testnet only and do not rely on this feature in production.
 :::
 
 Checks `credentialStatus.obligationRegistry`. Reports as `DOCUMENT_STATUS` with fragment `name` `ObligationRecords`, and the returned `data` carries `obligationRegistry`. Uses minted semantics: the token's owner is not the zero address. A rejected or discharged Bill of Exchange burns the token to a dead (non-zero) address rather than the zero address, so it still reports `VALID` here.
