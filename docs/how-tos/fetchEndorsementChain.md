@@ -6,7 +6,18 @@ sidebar_label: Fetch Endorsement Chain
 
 ### Description
 
-This function retrieves the endorsement chain of a token by fetching its transfer history from its escrow contract. It auto-detects whether the escrow is a classic **Title Escrow** (V4 or V5) or an **Obligation Escrow**, and processes the respective transfer events. If the escrow is V5 or an Obligation Escrow, it also decrypts any remarks associated with the transfer events.
+This function retrieves the endorsement chain of a token by querying escrow event logs from its escrow contract. It auto-detects whether the escrow is a classic **Title Escrow** (V4 or V5) or an **Obligation Escrow**, and processes the respective transfer events. If the escrow is V5 or an Obligation Escrow, it also decrypts any remarks associated with the transfer events.
+
+### RPC providers
+
+`fetchEndorsementChain` queries escrow event logs through the `provider` you pass in to reconstruct the endorsement chain. Use a reliable RPC endpoint (for example Infura or Alchemy) so older documents can be scanned efficiently.
+
+:::note
+
+Both Infura and Alchemy are fully supported.
+
+We suggest a paid account for your RPC provider. Infura typically limits `eth_getLogs` responses to about 10,000 returned logs (this is a result-count limit, not a fixed block-range cap), so larger scans are fetched in chunks. Alchemy’s paid tiers often allow an unrestricted block range (for example block 0 to latest in one request), but responses are still subject to a roughly 150 MB size cap.
+:::
 
 ### Parameters
 
