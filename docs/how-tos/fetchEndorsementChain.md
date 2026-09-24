@@ -14,9 +14,16 @@ This function retrieves the endorsement chain of a token by querying escrow even
 
 :::note
 
-Both Infura and Alchemy are fully supported.
+Both Infura and Alchemy are fully supported. Pass any API key via `provider` — the SDK **auto-adapts** (no plan flag): it probes the widest range first, then learns from RPC errors.
 
-We suggest a paid account for your RPC provider. Infura typically limits `eth_getLogs` responses to about 10,000 returned logs (this is a result-count limit, not a fixed block-range cap), so larger scans are fetched in chunks. Alchemy’s paid tiers often allow an unrestricted block range (for example block 0 to latest in one request), but responses are still subject to a roughly 150 MB size cap.
+| Provider / plan (inferred) | How logs are fetched |
+| --- | --- |
+| Alchemy PAYG / enterprise (sparse escrow) | Often one `eth_getLogs` over mint→latest |
+| Infura (any) | No fixed block-range cap; limited by **~10,000 results** and **~10s** query time — wide windows, then bisect/shrink |
+| Alchemy free | **10-block** windows, sequential only |
+| Block-capped paid chains | Parallel **~10,000-block** windows |
+
+We still recommend a paid RPC key for old documents. Free-tier keys work on short spans but cannot efficiently scan crore-block histories.
 :::
 
 ### Parameters
