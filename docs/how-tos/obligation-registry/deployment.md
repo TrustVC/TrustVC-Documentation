@@ -66,7 +66,7 @@ This requires Node.js v20.0.0 or later.
 
 To use the package, you will need to provide your own Web3 [provider](https://docs.ethers.io/v5/api/providers/api-providers/) or [signer](https://docs.ethers.io/v5/api/signer/#Wallet) (if you are writing to the blockchain).
 
-> Full function reference: [TrustVC SDK README — Obligation Registry (BoE)](https://github.com/TrustVC/trustvc/blob/main/README.md#c-obligation-registry-boe).
+> Full function reference: [TrustVC SDK README — Obligation Registry (BoE)](https://github.com/TrustVC/trustvc/blob/beta/README.md#c-obligation-registry-boe).
 
 The quickest way to deploy is the SDK's convenience function, which deploys a new `ObligationEscrowFactory` and `TrustVCToken` for you in a single call:
 
