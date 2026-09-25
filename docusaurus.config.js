@@ -1,3 +1,7 @@
+// GA4 measurement ID — injected at build time by deploy workflows.
+// Leave unset locally to disable tracking.
+const GA_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID;
+
 const siteConfig = {
   title: "TrustVC Documentation",
   tagline: "Documentation for TrustVC — Verifiable Credentials framework.",
@@ -24,6 +28,9 @@ const siteConfig = {
             require.resolve("./src/css/tailwind.css"),
           ],
         },
+        ...(GA_MEASUREMENT_ID
+          ? { gtag: { trackingID: GA_MEASUREMENT_ID } }
+          : {}),
       },
     ],
   ],
