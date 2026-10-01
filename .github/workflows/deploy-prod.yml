@@ -18,6 +18,8 @@ jobs:
       S3_BUCKET: ${{ secrets.S3_BUCKET_PROD }}
       CF_DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }}
       BUILD_DIR: build
+      # TrustVC - Documentation property (account 399120127)
+      GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID_PRODUCTION }}
 
     steps:
       - name: Checkout repository
@@ -37,6 +39,8 @@ jobs:
 
       - name: Build docs site
         run: npm run build
+        env:
+          GA_MEASUREMENT_ID: ${{ env.GA_MEASUREMENT_ID }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4

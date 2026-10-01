@@ -26,6 +26,8 @@ jobs:
     env:
       AWS_REGION: ap-southeast-1
       S3_BUCKET: ${{ secrets.S3_BUCKET_DEV }}
+      # TrustVC - Documentation Dev property (account 399120127)
+      GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID_DEVELOPMENT }}
 
     steps:
       - name: Checkout repository
@@ -45,6 +47,8 @@ jobs:
 
       - name: Build docs site
         run: npm run build
+        env:
+          GA_MEASUREMENT_ID: ${{ env.GA_MEASUREMENT_ID }}
 
       - name: Upload docs artifact (Dev)
         uses: actions/upload-artifact@v4
