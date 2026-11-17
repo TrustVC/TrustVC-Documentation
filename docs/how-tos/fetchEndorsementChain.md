@@ -16,7 +16,7 @@ This function retrieves the endorsement chain of a token by querying escrow even
 
 Both Infura and Alchemy are fully supported.
 
-We suggest a paid account for your RPC provider. Infura typically limits `eth_getLogs` responses to about 10,000 returned logs (a result-count limit, not a fixed block-range cap), so larger scans are fetched in chunks. On Alchemy, wide-range Ethereum queries can also hit a roughly 10,000-log response limit, separate from Alchemy’s roughly 150 MB response-size cap; paid tiers may still allow a large or unrestricted block range in one request (for example block 0 to latest). Exact log-count and block-range limits vary by chain and plan—if a query fails, split the scan into smaller block ranges.
+We suggest a paid account for your RPC provider. Infura typically limits `eth_getLogs` responses to about 10,000 returned logs (a result-count limit, not a fixed block-range cap), so larger scans are fetched in chunks. On Alchemy, wide-range Ethereum queries can also hit a roughly 10,000-log response limit, separate from Alchemy’s roughly 150 MB response-size cap; paid tiers may still allow a large or unrestricted block range in one request (for example block 0 to latest). Exact log-count and block-range limits vary by chain and plan. `fetchEndorsementChain` does not accept block-range parameters, so callers cannot split its scan through this function. Check your provider-plan limits.
 :::
 
 ### Parameters
